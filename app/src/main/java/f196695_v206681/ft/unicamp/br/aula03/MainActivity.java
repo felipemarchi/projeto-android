@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import f196695_v206681.ft.unicamp.br.aula03.alunos.AlunosFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -101,7 +103,10 @@ public class MainActivity extends AppCompatActivity
                 autoresFragment = new AutoresFragment();
             replaceFragment(autoresFragment, "autores_fragment");
         } else if (id == R.id.nav_alunos) {
-            mostraMensagemToast(item.getTitle().toString());
+            Fragment alunosFragment = fragmentManager.findFragmentByTag("alunos_fragment");
+            if (alunosFragment == null)
+                alunosFragment = new AlunosFragment();
+            replaceFragment(alunosFragment, "alunos_fragment");
         } else if (id == R.id.nav_biografias) {
             mostraMensagemToast(item.getTitle().toString());
         } else if (id == R.id.nav_jogo1) {

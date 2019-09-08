@@ -14,7 +14,7 @@ import android.widget.TextView;
  */
 public class AutoresFragment extends Fragment {
     View view;
-    String conteudoEmail;
+    String conteudoEmail = "Enviado para:\nMensagem:";
 
     public AutoresFragment() {
     }
