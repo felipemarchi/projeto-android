@@ -15,9 +15,6 @@ import java.util.Arrays;
 
 import f196695_v206681.ft.unicamp.br.aula03.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AlunosFragment extends Fragment {
     View view;
     RecyclerView mRecyclerView;
