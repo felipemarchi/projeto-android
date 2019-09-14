@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_margin="15dp"
+        android:padding="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="First Fragment" />
+        android:layout_height="wrap_content"
+        android:text="Bem vindo ao nosso App!"
+        android:textSize="30dp"
+        android:background="@drawable/border"/>
 
 </FrameLayout>

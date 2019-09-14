@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AutoresFragment">
+    tools:context=".autores.AutoresFragment">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -14,13 +14,24 @@
             android:layout_height="match_parent"
             android:padding="15dp">
 
+            <TextView
+                android:id="@+id/alunos"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Autores"
+                android:background="@drawable/border"
+                android:padding="10dp"/>
+
             <LinearLayout
                 android:id="@+id/box_contato"
+                android:layout_below="@+id/alunos"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@drawable/border"
                 android:layout_marginBottom="15dp">
                 <TextView
                     android:text="Contato"
@@ -35,24 +46,16 @@
                     android:paddingBottom="0dp"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/autores"
-                android:textSize="20dp"
-                android:paddingBottom="10dp"
-                android:layout_below="@+id/box_contato"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Autores" />
             <ImageView
-                android:id="@+id/felipe_foto"
-                android:layout_below="@id/autores"
+                android:id="@+id/imagem"
+                android:layout_below="@id/box_contato"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:paddingHorizontal="15dp"
                 android:src="@drawable/felipe_marchi"/>
             <TextView
                 android:id="@+id/felipe_nome"
-                android:layout_below="@+id/felipe_foto"
+                android:layout_below="@+id/imagem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -69,7 +72,7 @@
                 android:paddingHorizontal="15dp"
                 android:text="196695" />
             <TextView
-                android:id="@+id/felipe_descricao"
+                android:id="@+id/descricao"
                 android:layout_below="@+id/felipe_ra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +82,7 @@
 
             <ImageView
                 android:id="@+id/vinicius_foto"
-                android:layout_below="@id/felipe_descricao"
+                android:layout_below="@id/descricao"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:paddingHorizontal="15dp"

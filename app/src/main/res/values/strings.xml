@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Aula 04</string>
+    <string name="app_name">Aula 05</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configurações</string>
     <string name="action_contato">Contato</string>
 
     <?Autores?>
@@ -13,8 +13,5 @@
         cursando o 6° semestre do curso Sistemas de Informação da Unicamp.</string>
     <string name="vinicius_descricao">Nascido em Paulínia - SP, gosta de Java e Python, atualmente
         cursando o 6° semestre do curso Sistemas de Informação da Unicamp.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
