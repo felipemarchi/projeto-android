@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.autores.AutoresFragment">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/alunos"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Autores"
+                android:background="@drawable/border"
+                android:padding="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/box_contato"
+                android:layout_below="@+id/alunos"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:text="Contato"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"/>
+                <TextView
+                    android:id="@+id/mail_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="0dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imagem"
+                android:layout_below="@id/box_contato"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:paddingHorizontal="15dp"
+                android:src="@drawable/felipe_marchi"/>
+            <TextView
+                android:id="@+id/felipe_nome"
+                android:layout_below="@+id/imagem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:paddingHorizontal="15dp"
+                android:text="Felipe Carreiro Marchi" />
+            <TextView
+                android:id="@+id/felipe_ra"
+                android:layout_below="@+id/felipe_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingHorizontal="15dp"
+                android:text="196695" />
+            <TextView
+                android:id="@+id/descricao"
+                android:layout_below="@+id/felipe_ra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                android:text="@string/felipe_descricao"
+                android:paddingBottom="30dp"/>
+
+            <ImageView
+                android:id="@+id/vinicius_foto"
+                android:layout_below="@id/descricao"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:paddingHorizontal="15dp"
+                android:src="@drawable/vinicius_abrantes"/>
+            <TextView
+                android:id="@+id/vinicius_nome"
+                android:layout_below="@+id/vinicius_foto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                android:text="Vinícius Abrantes Pereira" />
+            <TextView
+                android:id="@+id/vinicius_ra"
+                android:layout_below="@+id/vinicius_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingHorizontal="15dp"
+                android:text="206681" />
+            <TextView
+                android:id="@+id/vinicius_descricao"
+                android:layout_below="@+id/vinicius_ra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="30dp"
+                android:paddingHorizontal="15dp"
+                android:text="@string/vinicius_descricao" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</FrameLayout>
