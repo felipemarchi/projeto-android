@@ -20,9 +20,13 @@
     <string name="home_adicional">Pressione para avaliar</string>
 
     <string name="avaliar_texto">Cadastre novas avaliações!</string>
-    <string name="avaliar_busca">Buscar</string>
+    <string name="avaliar_filme">Filme</string>
+    <string name="avaliar_ano">Ano</string>
+    <string name="avaliar_buscar">Buscar</string>
 
-    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
+    <string name="search_result_texto">Escolha o filme:</string>
+
+    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP:</string>
 
     <string name="contato_texto">Deixe-nos uma mesangem!</string>
     <string name="contato_nome">Seu nome ou e-mail</string>
@@ -33,4 +37,7 @@
 
     <string name="sobre_texto">Pós-créditos te permite salvar avaliações de filmes para consultar quando quiser! Nossa filmoteca mantêm-se sempre atualizada através da The Open Movie Database API</string>
     <string name="sobre_adicional">Projeto desenvolvido como parte integrante parcial da disciplina G_SI700A_2019S2 - Programação para Dispositivos Móveis, da Faculdade de Tecnologia da UNICAMP, ministrada pelo Professor Doutor Ulisses Martins Dias</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

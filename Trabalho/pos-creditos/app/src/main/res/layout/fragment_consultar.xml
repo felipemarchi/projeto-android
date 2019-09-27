@@ -3,12 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConsultarFragment">
+    tools:context=".gui.consultar.ConsultarFragment">
 
-    <TextView
-        android:gravity="center"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Você ainda não possui avaliações" />
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/home_text_filme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp"
+            android:text="Suas avaliações:"
+            android:textSize="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/consultar_recycler_view"
+            android:layout_below="@id/home_text_filme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 </FrameLayout>
