@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/nav_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_autores"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Autores" />
+        <item
+            android:id="@+id/nav_alunos"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Alunos" />
+        <item
+            android:id="@+id/nav_biografias"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Biografias" />
+        <item
+            android:id="@+id/nav_jogo1"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Jogo 1" />
+        <item
+            android:id="@+id/nav_jogo2"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Jogo 2" />
+    </group>
+
+
+</menu>
