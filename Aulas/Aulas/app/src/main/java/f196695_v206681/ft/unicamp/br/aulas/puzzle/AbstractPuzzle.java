@@ -38,6 +38,18 @@ public abstract class AbstractPuzzle {
         }
     }
 
+    public void drawCorrectBoard() {
+        for (int i = 0; i < board.getNumLines(); i++) {
+            for (int j = 0; j < board.getNumColumns(); j++) {
+
+                int index = i * board.getNumColumns() + j;
+                int imagem = board.getCorrectBlock(i, j);
+
+                imageViewList.get(index).setImageResource(imagem);
+            }
+        }
+    }
+
     public abstract void addListener(ImageView imageView, int line, int column);
 
     public abstract boolean endGame();

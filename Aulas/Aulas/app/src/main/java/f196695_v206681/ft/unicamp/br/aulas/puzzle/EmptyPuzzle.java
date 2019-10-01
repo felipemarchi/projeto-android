@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static java.lang.Math.abs;
 
 public class EmptyPuzzle extends AbstractPuzzle {
-    public VibrationBridge vibrationBridge;
+    public PuzzleBridge puzzleBridge;
 
     public EmptyPuzzle(Board board, ArrayList<ImageView> imageViews) {
         super(board, imageViews);
@@ -29,8 +29,8 @@ public class EmptyPuzzle extends AbstractPuzzle {
                 if (linhaDummy == line || colunaDummy == column) {
                     //mover dummy entre linhas
                     int diff = abs(linhaDummy - line);
-                    if (vibrationBridge != null && diff > 0)
-                        vibrationBridge.requestVibration();
+                    if (puzzleBridge != null && diff > 0)
+                        puzzleBridge.requestVibration(30);
 
                     for (int i = 0; i < diff; i++) {
                         if (linhaDummy > line) {
@@ -44,8 +44,8 @@ public class EmptyPuzzle extends AbstractPuzzle {
 
                     //mover dummy entre colunas
                     diff = abs(colunaDummy - column);
-                    if (vibrationBridge != null && diff > 0)
-                        vibrationBridge.requestVibration();
+                    if (puzzleBridge != null && diff > 0)
+                        puzzleBridge.requestVibration(30);
 
                     for (int j = 0; j < diff; j++) {
                         if (colunaDummy > column) {
@@ -60,6 +60,11 @@ public class EmptyPuzzle extends AbstractPuzzle {
                     board.atualizaPosicaoDummy();
 
                     redraw();
+
+                    if (endGame()) {
+                        puzzleBridge.requestVibration(500);
+                        puzzleBridge.showWinPopup();
+                    }
                 }
             }
         });
@@ -75,11 +80,12 @@ public class EmptyPuzzle extends AbstractPuzzle {
         return true;
     }
 
-    public void setVibrationBridge(VibrationBridge vibrationBridge) {
-        this.vibrationBridge = vibrationBridge;
+    public void setPuzzleBridge(PuzzleBridge puzzleBridge) {
+        this.puzzleBridge = puzzleBridge;
     }
 
-    public interface VibrationBridge {
-        public void requestVibration();
+    public interface PuzzleBridge {
+        public void requestVibration(int ms);
+        public void showWinPopup();
     }
 }

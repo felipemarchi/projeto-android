@@ -60,12 +60,12 @@ public class Boards {
             case 1 :
                 return new Board(6,4,
                         new ArrayList<Integer>(Arrays.asList(rodrigo)),
-                        80,69
+                        200,150
                         );
             default :
                 return new Board(4,4,
                         new ArrayList<Integer>(Arrays.asList(gislaine)),
-                        120,90);
+                        200,200);
         }
 
     }

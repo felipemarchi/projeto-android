@@ -14,4 +14,9 @@
     <string name="vinicius_descricao">Nascido em Paulínia - SP, gosta de Java e Python, atualmente
         cursando o 6° semestre do curso Sistemas de Informação da Unicamp.</string>
 
+    <array name="grid_options">
+        <item>Gislaine</item>
+        <item>Rodrigo</item>
+    </array>
+
 </resources>
