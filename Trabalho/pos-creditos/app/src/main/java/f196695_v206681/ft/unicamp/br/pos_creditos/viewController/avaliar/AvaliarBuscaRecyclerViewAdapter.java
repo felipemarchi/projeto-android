@@ -1,6 +1,5 @@
 package f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,42 +7,50 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.DownloadImageTask;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 
 public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
-    private ArrayList<Filme> filmes;
+    private List<Filme> filmes;
     private SearchResultOnClickListener onClickListener;
 
-    AvaliarBuscaRecyclerViewAdapter(ArrayList<Filme> filmes) {
-        this.filmes = filmes;
+    AvaliarBuscaRecyclerViewAdapter() {
+        this.filmes = new ArrayList<>();
     }
 
     public interface SearchResultOnClickListener {
-        void abrirTelaAvaliacao();
+        void abrirTelaAvaliacao(Filme filme);
     }
 
     public void setOnClickListener(SearchResultOnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
+    public void setFilmes(List<Filme> filmes) {
+        this.filmes = filmes;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_avaliar_busca, parent,false);
+        final SearchResultViewHolder viewHolder = new SearchResultViewHolder(view);
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onClickListener != null) {
-                    onClickListener.abrirTelaAvaliacao();
+                    onClickListener.abrirTelaAvaliacao(filmes.get(viewHolder.getIndex()));
                 }
             }
         });
 
-        final SearchResultViewHolder viewHolder = new SearchResultViewHolder(view);
 
         return viewHolder;
     }
@@ -62,7 +69,7 @@ public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
         private ImageView imagePoster;
         private TextView textTitulo;
         private TextView textAno;
-        public int position;
+        private int index;
 
         public SearchResultViewHolder(View itemView) {
             super(itemView);
@@ -72,11 +79,18 @@ public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
         }
 
         public void onBind(final Filme filme, final int position) {
-            this.position = position;
-            imagePoster.setImageURI(Uri.parse(filme.getPoster()));
+            this.index = position;
+            new DownloadImageTask(imagePoster).execute(filme.getPoster());
             textTitulo.setText(filme.getTitle());
-            textAno.setText(filme.getYear());
+
+            String ano = filme.getYear();
+            if (ano.length() == 5)
+                ano = ano.replace("–", "");
+            textAno.setText(ano);
         }
 
+        public int getIndex() {
+            return index;
+        }
     }
 }

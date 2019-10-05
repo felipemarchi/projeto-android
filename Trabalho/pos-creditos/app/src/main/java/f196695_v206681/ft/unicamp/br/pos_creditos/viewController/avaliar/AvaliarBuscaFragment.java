@@ -8,17 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import f196695_v206681.ft.unicamp.br.pos_creditos.application.MainActivity;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
-import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.FuncoesAPI;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.OmdbApi;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
-import f196695_v206681.ft.unicamp.br.pos_creditos.model.Retorno;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.widget.Toast;
 
 public class AvaliarBuscaFragment extends Fragment {
     View view;
@@ -39,18 +35,11 @@ public class AvaliarBuscaFragment extends Fragment {
         if (view == null)
             view = inflater.inflate(R.layout.fragment_avaliar_busca, container, false);
 
-        Filme[] filmes;
-        Retorno retornoBuscaPorFilme = FuncoesAPI.buscarPorFilme(titulo, ano, indexTipo);
-        if (retornoBuscaPorFilme != null)
-            filmes = retornoBuscaPorFilme.Search;
-        else
-            filmes = new Filme[]{};
-
-        adapter = new AvaliarBuscaRecyclerViewAdapter(new ArrayList(Arrays.asList(filmes)));
+        adapter = new AvaliarBuscaRecyclerViewAdapter();
         adapter.setOnClickListener(new AvaliarBuscaRecyclerViewAdapter.SearchResultOnClickListener() {
             @Override
-            public void abrirTelaAvaliacao() {
-                ((MainActivity) getActivity()).mostrarAvaliarFilmeFragment();
+            public void abrirTelaAvaliacao(Filme filme) {
+                ((MainActivity) getActivity()).mostrarAvaliarFilmeFragment(filme);
             }
         });
 
@@ -58,6 +47,24 @@ public class AvaliarBuscaFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+        new OmdbApi() {
+
+            @Override
+            public void setAdapterFilmes() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(getFilmes() != null) {
+                            adapter.setFilmes(getFilmes());
+                        } else {
+                            Toast.makeText(getContext(), "Nenhum resultado encontrado!", Toast.LENGTH_LONG).show();
+                            ((MainActivity) getActivity()).goToPreviousFragment();
+                        }
+                    }
+                });
+            }
+        }.buscarPorFilme(titulo, ano, indexTipo);
 
         return view;
     }

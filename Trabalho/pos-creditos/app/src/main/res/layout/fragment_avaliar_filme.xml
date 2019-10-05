@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".gui.avaliar.AvaliarFilmeFragment">
+    tools:context=".viewController.avaliar.AvaliarFilmeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
             android:id="@+id/avaliar_filme_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iron man"
             android:paddingBottom="32dp"
             android:textSize="20dp" />
 

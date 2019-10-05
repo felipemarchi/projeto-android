@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
             private ImageView imagePoster;
             private TextView textTitulo;
             private TextView textAno;
-            private TextView textAvaliacao;
+            private RatingBar ratingBar;
             public int position;
 
             public ConsultarViewHolder(View itemView) {
@@ -50,7 +51,7 @@ public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
                 imagePoster = itemView.findViewById(R.id.poster_consultar);
                 textTitulo = itemView.findViewById(R.id.titulo_consultar);
                 textAno = itemView.findViewById(R.id.ano_consultar);
-                textAvaliacao = itemView.findViewById(R.id.avaliacao_consultar);
+                ratingBar = itemView.findViewById(R.id.avaliacao_consultar);
             }
 
             public void onBind(final FilmeAssistido filme, final int position) {
@@ -58,7 +59,7 @@ public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
                 imagePoster.setImageResource(filme.getPoster());
                 textTitulo.setText(filme.getTitulo());
                 textAno.setText(filme.getAno());
-                textAvaliacao.setText(Double.toString(filme.getAvaliacao()));
+                ratingBar.setRating((float) filme.getAvaliacao());
             }
 
         }

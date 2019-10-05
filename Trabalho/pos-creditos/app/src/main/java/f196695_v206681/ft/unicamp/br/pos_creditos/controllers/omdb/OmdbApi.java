@@ -3,6 +3,7 @@ package f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Retorno;
@@ -12,26 +13,27 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class FuncoesAPI {
+public abstract class OmdbApi {
 
     private static String apikey = "ed9ff193";
     private static String urlBase = "https://www.omdbapi.com/?apikey=" + apikey;
+    private List<Filme> filmes;
 
-    public static Retorno buscarPorFilme(String titulo, String ano, int indexTipo) {
-        final Retorno[] retorno = new Retorno[1];
+    public List<Filme> getFilmes() {
+        return filmes;
+    }
 
-        String urlRequest = urlBase + "&s=" + titulo;
-        if (ano != "")
-            urlRequest += "&y=" + ano;
+    public void buscarPorFilme(String titulo, String ano, int indexTipo) {
+        String requestUrl = urlBase + "&s=" + titulo.replaceAll(" ", "+");
+        if (!ano.isEmpty())
+            requestUrl += "&y=" + ano;
         if (indexTipo == 1)
-            urlRequest += "&type=movie";
+            requestUrl += "&type=movie";
         else if (indexTipo == 2)
-            urlRequest += "&type=series";
+            requestUrl += "&type=series";
 
+        Request request = new Request.Builder().url(requestUrl).build();
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(urlRequest)
-                .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -42,11 +44,13 @@ public class FuncoesAPI {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String json = response.body().string();
-                    retorno[0] = new Gson().fromJson(json, Retorno.class);
+                    Retorno retorno = new Gson().fromJson(json, Retorno.class);
+                    filmes = retorno.Search;
+                    setAdapterFilmes();
                 }
             }
         });
-
-        return retorno[0];
     }
+
+    public abstract void setAdapterFilmes();
 }

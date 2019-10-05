@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.email.GmailSend;
+import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.SobreFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.AutoresFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFragment;
@@ -148,11 +149,12 @@ public class MainActivity extends AppCompatActivity
         ReplaceFragment(avaliarBuscaFragment,"avaliar_busca_fragment");
     }
 
-    public void mostrarAvaliarFilmeFragment() {
-        Fragment avaliarFilmeFragment = fragmentManager.findFragmentByTag("avaliar_filme_fragment");
-        if (avaliarFilmeFragment == null) {
-            avaliarFilmeFragment = new AvaliarFilmeFragment();
-        }
+    public void mostrarAvaliarFilmeFragment(Filme filme) {
+        AvaliarFilmeFragment avaliarFilmeFragment = (AvaliarFilmeFragment) fragmentManager.findFragmentByTag("avaliar_filme_fragment");
+        if (avaliarFilmeFragment == null)
+            avaliarFilmeFragment = new AvaliarFilmeFragment(filme);
+        else
+            avaliarFilmeFragment.setFilme(filme);
         ReplaceFragment(avaliarFilmeFragment,"avaliar_filme_fragment");
     }
 
@@ -179,5 +181,9 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.frame, fragment, tag);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public void goToPreviousFragment() {
+        fragmentManager.popBackStack();
     }
 }
