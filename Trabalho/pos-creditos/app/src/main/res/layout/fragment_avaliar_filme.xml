@@ -1,0 +1,55 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".gui.avaliar.AvaliarFilmeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/avaliar_filme_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iron man"
+            android:paddingBottom="32dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Avaliação:"
+            android:textSize="16dp" />
+
+        <RatingBar
+            android:id="@+id/avaliar_filme_estrelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/avaliar_filme_comentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Comentário sobre o filme"
+            android:minLines="5"
+            android:textSize="16dp" />
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:headerBackground="@color/colorPrimary"
+            android:hint="Data" />
+
+        <Button
+            android:id="@+id/avaliar_filme_avaliar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Avaliar" />
+    </LinearLayout>
+</ScrollView>

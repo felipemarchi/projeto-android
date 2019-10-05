@@ -16,17 +16,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.outros.SobreFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.outros.AutoresFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.consultar.ConsultarFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.outros.ContatoFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.home.HomeFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.avaliar.AvaliarFilmeFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.avaliar.BuscarFilmesFragment;
-import f196695_v206681.ft.unicamp.br.pos_creditos.gui.avaliar.ResultadoBuscaFilmesFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.email.GmailSend;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.SobreFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.AutoresFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.ContatoFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.home.HomeFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar.AvaliarFilmeFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar.AvaliarFragment;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar.AvaliarBuscaFragment;
 
 import android.view.Menu;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,8 +72,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.kebab_menu, menu);
         return true;
     }
 
@@ -77,12 +80,20 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_sobre) {
+        if (id == R.id.kebab_menu_sobre) {
             Fragment sobreFragment = fragmentManager.findFragmentByTag("sobre_fragment");
             if (sobreFragment == null) {
                 sobreFragment = new SobreFragment();
             }
             ReplaceFragment(sobreFragment,"sobre_fragment");
+        }
+
+        else if (id == R.id.kebab_menu_autores) {
+            Fragment autoresFragment = fragmentManager.findFragmentByTag("autores_fragment");
+            if (autoresFragment == null) {
+                autoresFragment = new AutoresFragment();
+            }
+            ReplaceFragment(autoresFragment,"autores_fragment");
         }
 
         return super.onOptionsItemSelected(item);
@@ -93,31 +104,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.navigation_drawer_home) {
             Fragment homeFragment = fragmentManager.findFragmentByTag("home_fragment");
             if (homeFragment == null) {
                 homeFragment = new HomeFragment();
             }
             ReplaceFragment(homeFragment,"home_fragment");
-        } else if (id == R.id.nav_avaliar) {
-            Fragment buscarFilmesFragment = fragmentManager.findFragmentByTag("buscar_filmes_fragment");
-            if (buscarFilmesFragment == null) {
-                buscarFilmesFragment = new BuscarFilmesFragment();
-            }
-            ReplaceFragment(buscarFilmesFragment,"buscar_filmes_fragment");
-        } else if (id == R.id.nav_consultar) {
+        }
+
+        else if (id == R.id.navigation_drawer_avaliar) {
+            Fragment avaliarFragment = fragmentManager.findFragmentByTag("avaliar_fragment");
+            avaliarFragment = new AvaliarFragment();
+            ReplaceFragment(avaliarFragment,"avaliar_fragment");
+        }
+
+        else if (id == R.id.navigation_drawer_consultar) {
             Fragment consultarFragment = fragmentManager.findFragmentByTag("consultar_fragment");
             if (consultarFragment == null) {
                 consultarFragment = new ConsultarFragment();
             }
             ReplaceFragment(consultarFragment,"consultar_fragment");
-        } else if (id == R.id.nav_autores) {
-            Fragment autoresFragment = fragmentManager.findFragmentByTag("autores_fragment");
-            if (autoresFragment == null) {
-                autoresFragment = new AutoresFragment();
-            }
-            ReplaceFragment(autoresFragment,"autores_fragment");
-        } else if (id == R.id.nav_contato) {
+        }
+
+        else if (id == R.id.navigation_drawer_contato) {
             Fragment contatoFragment = fragmentManager.findFragmentByTag("contato_fragment");
             if (contatoFragment == null) {
                 contatoFragment = new ContatoFragment();
@@ -130,26 +139,45 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void ReplaceFragment(Fragment fragment, String tag) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment, tag);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    public void mostrarResultSearchFragment() {
-        Fragment resultadoBuscaFilmesFragment = fragmentManager.findFragmentByTag("resultado_busca_filmes_fragment");
-        if (resultadoBuscaFilmesFragment == null) {
-            resultadoBuscaFilmesFragment = new ResultadoBuscaFilmesFragment();
+    public void mostrarAvaliarBuscaFragment(String titulo, String ano, int indexTipo) {
+        AvaliarBuscaFragment avaliarBuscaFragment = (AvaliarBuscaFragment) fragmentManager.findFragmentByTag("avaliar_busca_fragment");
+        if (avaliarBuscaFragment == null) {
+            avaliarBuscaFragment = new AvaliarBuscaFragment();
         }
-        ReplaceFragment(resultadoBuscaFilmesFragment,"resultado_busca_filmes_fragment");
+        avaliarBuscaFragment.carregarAtributos(titulo, ano, indexTipo);
+        ReplaceFragment(avaliarBuscaFragment,"avaliar_busca_fragment");
     }
 
-    public void mostrarAvaliacaoFragment() {
+    public void mostrarAvaliarFilmeFragment() {
         Fragment avaliarFilmeFragment = fragmentManager.findFragmentByTag("avaliar_filme_fragment");
         if (avaliarFilmeFragment == null) {
             avaliarFilmeFragment = new AvaliarFilmeFragment();
         }
         ReplaceFragment(avaliarFilmeFragment,"avaliar_filme_fragment");
+    }
+
+    public void enviarContato(String assunto, String mensagem) {
+        new GmailSend("contato.poscreditos@gmail.com", assunto, mensagem);
+        Toast.makeText(getApplicationContext(), "Contato enviado", Toast.LENGTH_SHORT).show();
+        Fragment homeFragment = fragmentManager.findFragmentByTag("home_fragment");
+        if (homeFragment == null) {
+            homeFragment = new HomeFragment();
+        }
+        ReplaceFragment(homeFragment,"home_fragment");
+    }
+
+    public void hideKeyboard() {
+        if(getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    public void ReplaceFragment(Fragment fragment, String tag) {
+        hideKeyboard();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame, fragment, tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="20dp"
     tools:context=".gui.outros.ContatoFragment">
 
     <TextView
@@ -15,41 +15,35 @@
         android:textSize="20dp" />
 
     <EditText
+        android:id="@+id/contato_email"
+        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/contato_nome"
         android:textSize="16dp" />
 
     <EditText
+        android:id="@+id/contato_assunto"
+        android:inputType="textEmailSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/contato_assunto"
         android:textSize="16dp" />
 
     <EditText
+        android:id="@+id/contato_mensagem"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:minLines="5"
         android:gravity="top"
         android:hint="@string/contato_mensagem"
         android:textSize="16dp" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/contato_enviar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/contato_limpar" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/contato_enviar" />
-    </LinearLayout>
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/contato_enviar" />
 
 </LinearLayout>

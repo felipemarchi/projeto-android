@@ -1,37 +1,29 @@
 package f196695_v206681.ft.unicamp.br.pos_creditos.model;
 
 public class Filme {
-    private String titulo;
-    private String ano;
-    private int poster;
+    private String Title;
+    private String Year;
+    private String imdbId;
+    private String Type;
+    private String Poster;
 
-    public Filme(String titulo, String ano, int poster) {
-        this.titulo = titulo;
-        this.ano = ano;
-        this.poster = poster;
+    public String getTitle() {
+        return Title;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getYear() {
+        return Year;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public String getImdbId() {
+        return imdbId;
     }
 
-    public String getAno() {
-        return ano;
+    public String getType() {
+        return Type;
     }
 
-    public void setAno(String ano) {
-        this.ano = ano;
-    }
-
-    public int getPoster() {
-        return poster;
-    }
-
-    public void setPoster(int poster) {
-        this.poster = poster;
+    public String getPoster() {
+        return Poster;
     }
 }

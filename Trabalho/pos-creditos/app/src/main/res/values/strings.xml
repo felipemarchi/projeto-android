@@ -8,36 +8,37 @@
     <string name="nav_header_subtitle">Encontre seu crítico interior</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="action_sobre">Sobre</string>
+    <string name="kebab_menu_sobre">Sobre</string>
+    <string name="kebab_menu_autores">Autores</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_avaliar">Avaliar</string>
-    <string name="menu_consultar">Consultar</string>
-    <string name="menu_autores">Autores</string>
-    <string name="menu_contato">Contato</string>
+    <string name="navigation_drawer_home">Home</string>
+    <string name="navigation_drawer_avaliar">Avaliar</string>
+    <string name="navigation_drawer_consultar">Consultar</string>
+    <string name="navigation_drawer_contato">Contato</string>
 
-    <string name="home_texto">Últimos lançamentos!</string>
-    <string name="home_adicional">Pressione para avaliar</string>
+    <string name="home_texto">Home</string>
 
-    <string name="avaliar_texto">Cadastre novas avaliações!</string>
-    <string name="avaliar_filme">Filme</string>
+    <string name="avaliar_texto">1. Busque por um filme</string>
+    <string name="avaliar_titulo">Título</string>
     <string name="avaliar_ano">Ano</string>
     <string name="avaliar_buscar">Buscar</string>
+    <string-array name="avaliar_tipo">
+        <item>Filmes e Séries</item>
+        <item>Filmes</item>
+        <item>Séries</item>
+    </string-array>
 
-    <string name="search_result_texto">Escolha o filme:</string>
+    <string name="avaliar_busca_texto">2. Selecione para avaliar</string>
 
-    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP:</string>
+    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
 
     <string name="contato_texto">Deixe-nos uma mesangem!</string>
-    <string name="contato_nome">Seu nome ou e-mail</string>
+    <string name="contato_nome">E-mail</string>
     <string name="contato_assunto">Assunto</string>
     <string name="contato_mensagem">Mensagem</string>
     <string name="contato_limpar">Limpar</string>
     <string name="contato_enviar">Enviar</string>
 
-    <string name="sobre_texto">Pós-créditos te permite salvar avaliações de filmes para consultar quando quiser! Nossa filmoteca mantêm-se sempre atualizada através da The Open Movie Database API</string>
+    <string name="sobre_texto">Pós-créditos te permite salvar avaliações de filmes para consultar quando quiser! Nossa filmoteca mantém-se atualizada através da The Open Movie Database API</string>
     <string name="sobre_adicional">Projeto desenvolvido como parte integrante parcial da disciplina G_SI700A_2019S2 - Programação para Dispositivos Móveis, da Faculdade de Tecnologia da UNICAMP, ministrada pelo Professor Doutor Ulisses Martins Dias</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
