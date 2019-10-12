@@ -22,8 +22,13 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
+            try {
+                InputStream in = new java.net.URL("https://media.comicbook.com/files/img/default-movie.png?auto=webp").openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception ex) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
         }
         return mIcon11;
     }

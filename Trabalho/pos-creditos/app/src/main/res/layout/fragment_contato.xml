@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".gui.outros.ContatoFragment">
+    tools:context=".viewController.outros.ContatoFragment">
 
     <TextView
         android:layout_width="match_parent"

@@ -16,6 +16,9 @@ import android.widget.TextView;
 public class ContatoFragment extends Fragment {
 
     View view;
+    TextView textViewEmail;
+    TextView textViewAssunto;
+    TextView textViewMensagem;
 
     public ContatoFragment() {
 
@@ -29,26 +32,28 @@ public class ContatoFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_contato, container, false);
 
-            final TextView email = view.findViewById(R.id.contato_email);
-            final TextView assunto = view.findViewById(R.id.contato_assunto);
-            final TextView mensagem = view.findViewById(R.id.contato_mensagem);
+            textViewEmail = view.findViewById(R.id.contato_email);
+            textViewAssunto = view.findViewById(R.id.contato_assunto);
+            textViewMensagem = view.findViewById(R.id.contato_mensagem);
 
             view.findViewById(R.id.contato_enviar).setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String assuntoEmail = assunto.getText().toString();
+                    String assuntoEmail = textViewAssunto.getText().toString();
                     String mensagemFormatada =
-                            "RESPONDER À\n" + email.getText() +
-                            "\n\nMENSAGEM\n" + mensagem.getText();
+                            "RESPONDER À\n" + textViewEmail.getText() +
+                            "\n\nMENSAGEM\n" + textViewMensagem.getText();
 
-                    email.setText("");
-                    assunto.setText("");
-                    mensagem.setText("");
+                    textViewEmail.setText("");
+                    textViewAssunto.setText("");
+                    textViewMensagem.setText("");
 
                     ((MainActivity) getActivity()).enviarContato(assuntoEmail, mensagemFormatada);
                 }
             });
         }
+
+        textViewEmail.requestFocus();
 
         return view;
     }

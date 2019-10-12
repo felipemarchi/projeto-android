@@ -17,13 +17,13 @@ public abstract class OmdbApi {
 
     private static String apikey = "ed9ff193";
     private static String urlBase = "https://www.omdbapi.com/?apikey=" + apikey;
-    private List<Filme> filmes;
+    private Retorno retorno;
 
-    public List<Filme> getFilmes() {
-        return filmes;
+    public Retorno getRetorno() {
+        return retorno;
     }
 
-    public void buscarPorFilme(String titulo, String ano, int indexTipo) {
+    public void buscarFilme(String titulo, String ano, int indexTipo) {
         String requestUrl = urlBase + "&s=" + titulo.replaceAll(" ", "+");
         if (!ano.isEmpty())
             requestUrl += "&y=" + ano;
@@ -44,8 +44,7 @@ public abstract class OmdbApi {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String json = response.body().string();
-                    Retorno retorno = new Gson().fromJson(json, Retorno.class);
-                    filmes = retorno.Search;
+                    retorno = new Gson().fromJson(json, Retorno.class);
                     setAdapterFilmes();
                 }
             }

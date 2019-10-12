@@ -28,11 +28,9 @@
         <item>Séries</item>
     </string-array>
 
-    <string name="avaliar_busca_texto">2. Selecione para avaliar</string>
-
     <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
 
-    <string name="contato_texto">Deixe-nos uma mesangem!</string>
+    <string name="contato_texto">Deixe-nos uma mensagem!</string>
     <string name="contato_nome">E-mail</string>
     <string name="contato_assunto">Assunto</string>
     <string name="contato_mensagem">Mensagem</string>
@@ -41,4 +39,5 @@
 
     <string name="sobre_texto">Pós-créditos te permite salvar avaliações de filmes para consultar quando quiser! Nossa filmoteca mantém-se atualizada através da The Open Movie Database API</string>
     <string name="sobre_adicional">Projeto desenvolvido como parte integrante parcial da disciplina G_SI700A_2019S2 - Programação para Dispositivos Móveis, da Faculdade de Tecnologia da UNICAMP, ministrada pelo Professor Doutor Ulisses Martins Dias</string>
+    <string name="sobre_frase">Encontre seu crítico interior!</string>
 </resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284100282938",
+    "firebase_url": "https://pos-creditos.firebaseio.com",
+    "project_id": "pos-creditos",
+    "storage_bucket": "pos-creditos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284100282938:android:86d114ff740fed5e350303",
+        "android_client_info": {
+          "package_name": "f196695_v206681.ft.unicamp.br.pos_creditos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284100282938-qrdepdgtkh51g7kg9bcjkekkijlbk6v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEPAv7kSHX-eLKezPNStjjnmdsXN6z8wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284100282938-qrdepdgtkh51g7kg9bcjkekkijlbk6v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

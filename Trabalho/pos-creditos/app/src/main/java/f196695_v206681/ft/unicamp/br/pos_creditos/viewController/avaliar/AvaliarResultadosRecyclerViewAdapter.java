@@ -15,11 +15,11 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.DownloadImage
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 
-public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
+public class AvaliarResultadosRecyclerViewAdapter extends RecyclerView.Adapter {
     private List<Filme> filmes;
     private SearchResultOnClickListener onClickListener;
 
-    AvaliarBuscaRecyclerViewAdapter() {
+    AvaliarResultadosRecyclerViewAdapter() {
         this.filmes = new ArrayList<>();
     }
 
@@ -39,7 +39,7 @@ public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_avaliar_busca, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_avaliar_resultados, parent,false);
         final SearchResultViewHolder viewHolder = new SearchResultViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,6 @@ public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
                 }
             }
         });
-
 
         return viewHolder;
     }
@@ -73,14 +72,16 @@ public class AvaliarBuscaRecyclerViewAdapter extends RecyclerView.Adapter {
 
         public SearchResultViewHolder(View itemView) {
             super(itemView);
-            imagePoster = itemView.findViewById(R.id.avaliar_busca_poster);
-            textTitulo = itemView.findViewById(R.id.avaliar_busca_titulo);
-            textAno = itemView.findViewById(R.id.avaliar_busca_ano);
+            imagePoster = itemView.findViewById(R.id.avaliar_resultados_poster);
+            textTitulo = itemView.findViewById(R.id.avaliar_resultados_titulo);
+            textAno = itemView.findViewById(R.id.avaliar_resultados_ano);
         }
 
         public void onBind(final Filme filme, final int position) {
             this.index = position;
-            new DownloadImageTask(imagePoster).execute(filme.getPoster());
+
+            filme.getSetPoster(imagePoster);
+
             textTitulo.setText(filme.getTitle());
 
             String ano = filme.getYear();
