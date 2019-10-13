@@ -37,6 +37,7 @@ public abstract class OmdbApi {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                OmdbApi.this.onFailure();
                 e.printStackTrace();
             }
 
@@ -52,4 +53,5 @@ public abstract class OmdbApi {
     }
 
     public abstract void setAdapterFilmes();
+    public abstract void onFailure();
 }

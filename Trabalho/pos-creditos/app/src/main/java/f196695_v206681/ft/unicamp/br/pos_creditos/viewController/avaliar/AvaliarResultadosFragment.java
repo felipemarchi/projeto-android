@@ -78,8 +78,19 @@ public class AvaliarResultadosFragment extends Fragment {
                             adapter.setFilmes(retorno.Search);
                         } else {
                             Toast.makeText(getContext(), "Nenhum resultado encontrado!", Toast.LENGTH_LONG).show();
-                            ((MainActivity) getActivity()).goToPreviousFragment();
+                            ((MainActivity) getActivity()).onBackPressed();
                         }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), "Sem conexão com internet!", Toast.LENGTH_LONG).show();
+                        ((MainActivity) getActivity()).onBackPressed();
                     }
                 });
             }

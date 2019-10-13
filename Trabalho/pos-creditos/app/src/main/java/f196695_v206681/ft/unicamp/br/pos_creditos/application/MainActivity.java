@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.add(R.id.frame, homeFragment, "home_fragment");
             fragmentTransaction.commit();
         }
-        //TODO onDestroy hideKeyboard
+        hideKeyboard();
     }
 
     @Override
@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity
             if (sobreFragment == null) {
                 sobreFragment = new SobreFragment();
             }
-            ReplaceFragment(sobreFragment, "sobre_fragment");
+            replaceFragment(sobreFragment, "sobre_fragment");
         } else if (id == R.id.kebab_menu_autores) {
             Fragment autoresFragment = fragmentManager.findFragmentByTag("autores_fragment");
             if (autoresFragment == null) {
                 autoresFragment = new AutoresFragment();
             }
-            ReplaceFragment(autoresFragment, "autores_fragment");
+            replaceFragment(autoresFragment, "autores_fragment");
         }
 
         return super.onOptionsItemSelected(item);
@@ -128,23 +128,22 @@ public class MainActivity extends AppCompatActivity
             if (homeFragment == null) {
                 homeFragment = new HomeFragment();
             }
-            ReplaceFragment(homeFragment, "home_fragment");
+            replaceFragment(homeFragment, "home_fragment");
         } else if (id == R.id.navigation_drawer_avaliar) {
-            Fragment avaliarFragment = fragmentManager.findFragmentByTag("avaliar_fragment");
-            avaliarFragment = new AvaliarFragment();
-            ReplaceFragment(avaliarFragment, "avaliar_fragment");
+            Fragment avaliarFragment = new AvaliarFragment();
+            replaceFragment(avaliarFragment, "avaliar_fragment");
         } else if (id == R.id.navigation_drawer_consultar) {
             Fragment consultarFragment = fragmentManager.findFragmentByTag("consultar_fragment");
             if (consultarFragment == null) {
                 consultarFragment = new ConsultarFragment();
             }
-            ReplaceFragment(consultarFragment, "consultar_fragment");
+            replaceFragment(consultarFragment, "consultar_fragment");
         } else if (id == R.id.navigation_drawer_contato) {
             Fragment contatoFragment = fragmentManager.findFragmentByTag("contato_fragment");
             if (contatoFragment == null) {
                 contatoFragment = new ContatoFragment();
             }
-            ReplaceFragment(contatoFragment, "contato_fragment");
+            replaceFragment(contatoFragment, "contato_fragment");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -158,7 +157,7 @@ public class MainActivity extends AppCompatActivity
             avaliarResultadosFragment = new AvaliarResultadosFragment();
         }
         avaliarResultadosFragment.carregarAtributos(titulo, ano, indexTipo);
-        ReplaceFragment(avaliarResultadosFragment, "avaliar_busca_fragment");
+        replaceFragment(avaliarResultadosFragment, "avaliar_busca_fragment");
     }
 
     public void mostrarAvaliarFilmeFragment(Filme filme) {
@@ -167,7 +166,7 @@ public class MainActivity extends AppCompatActivity
             avaliarFilmeFragment = new AvaliarFilmeFragment(filme);
         else
             avaliarFilmeFragment.setFilme(filme);
-        ReplaceFragment(avaliarFilmeFragment, "avaliar_filme_fragment");
+        replaceFragment(avaliarFilmeFragment, "avaliar_filme_fragment");
     }
 
     public void enviarContato(String assunto, String mensagem) {
@@ -177,40 +176,39 @@ public class MainActivity extends AppCompatActivity
         if (homeFragment == null) {
             homeFragment = new HomeFragment();
         }
-        ReplaceFragment(homeFragment, "home_fragment");
+        replaceFragment(homeFragment, "home_fragment");
     }
 
     public void goBackToHomeFragment() {
-        //TODO dar pop nos fragments abertos
         Fragment homeFragment = fragmentManager.findFragmentByTag("home_fragment");
-        if (homeFragment == null) {
+        if (homeFragment == null)
             homeFragment = new HomeFragment();
-        }
-        ReplaceFragment(homeFragment, "home_fragment");
+        replaceFragment(homeFragment, "home_fragment");
     }
 
     public void hideKeyboard() {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        if (getCurrentFocus() != null && inputMethodManager.isAcceptingText())
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public void showKeyboard(View view) {
         hideKeyboard();
         view.requestFocus();
-        InputMethodManager imm = (InputMethodManager)   getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
-    public void ReplaceFragment(Fragment fragment, String tag) {
+    public void replaceFragment(Fragment fragment, String tag) {
         hideKeyboard();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment, tag);
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack(tag);
         fragmentTransaction.commit();
-    }
-
-    public void goToPreviousFragment() {
-        fragmentManager.popBackStack();
     }
 }

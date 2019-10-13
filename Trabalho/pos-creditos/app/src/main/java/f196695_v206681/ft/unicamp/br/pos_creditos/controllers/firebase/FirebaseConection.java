@@ -12,7 +12,7 @@ public abstract class FirebaseConection {
 
     public void salvarAvaliacao(Filme filme) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+        FirebaseConection.this.onSuccess();
         db.collection("filmes")
                 .add(filme)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
