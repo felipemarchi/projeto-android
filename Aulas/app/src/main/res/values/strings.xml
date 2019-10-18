@@ -1,0 +1,33 @@
+<resources>
+    <array name="grid_options">
+        <item>Gislaine</item>
+        <item>Rodrigo</item>
+    </array>
+    <string name="app_name">Aulas</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Configurações</string>
+
+    <?Autores?>
+    <string name="action_contato">Contato</string>
+    <string name="felipe_descricao">Nascido em Limeira - SP, gosta de javascript e css, atualmente
+        cursando o 6° semestre do curso Sistemas de Informação da Unicamp.</string>
+
+    <string name="vinicius_descricao">Nascido em Paulínia - SP, gosta de Java e Python, atualmente
+        cursando o 6° semestre do curso Sistemas de Informação da Unicamp.</string>
+    <string name="title_activity_kotlin">KotlinActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
