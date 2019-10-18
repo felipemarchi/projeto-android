@@ -4,40 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/padding_fragment"
     tools:context=".viewController.outros.ContatoFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="32dp"
+        android:paddingBottom="@dimen/space"
         android:text="@string/contato_texto"
-        android:textSize="20dp" />
+        android:textSize="@dimen/size_title" />
 
     <EditText
         android:id="@+id/contato_email"
         android:inputType="textEmailAddress"
+        android:autofillHints="email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/contato_nome"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 
     <EditText
         android:id="@+id/contato_assunto"
         android:inputType="textEmailSubject"
+        android:importantForAutofill="no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/contato_assunto"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 
     <EditText
         android:id="@+id/contato_mensagem"
+        android:inputType="textMultiLine"
+        android:importantForAutofill="no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minLines="5"
         android:gravity="top"
         android:hint="@string/contato_mensagem"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 
     <Button
         android:id="@+id/contato_enviar"

@@ -2,7 +2,6 @@ package f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar;
 
 import android.os.Bundle;
 
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,92 +16,93 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AvaliarResultadosFragment extends Fragment {
     View view;
+    OmdbApi omdbApi;
+    MainActivity mainActivity;
+    AvaliarResultadosAdapter adapter;
+
     TextView textViewTexto;
     TextView textViewSubtexto;
     ProgressBar progressBar;
     RecyclerView recyclerView;
-    AvaliarResultadosRecyclerViewAdapter adapter;
 
     String titulo;
     String ano;
     int indexTipo;
 
-    public AvaliarResultadosFragment() {
-
+    public void carregarAtributos(Bundle arguments) {
+        this.titulo = arguments.getString("titulo");
+        this.ano = arguments.getString("ano");
+        this.indexTipo = Integer.parseInt(arguments.getString("indexTipo"));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(R.string.avaliar_resultados_titulo);
+        carregarAtributos(getArguments());
+
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_resultados, container, false);
+            mainActivity = (MainActivity) getActivity();
 
             textViewTexto = view.findViewById(R.id.avaliar_resultados_texto);
             textViewSubtexto = view.findViewById(R.id.avaliar_resultados_subtexto);
-            progressBar = view.findViewById(R.id.avaliacao_loading);
+            progressBar = view.findViewById(R.id.avaliar_resultados_loading);
             recyclerView = view.findViewById(R.id.avaliar_resultados_recycler_view);
+
+            omdbApi = new OmdbApi() {
+                @Override
+                public void onSuccess() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Retorno retorno = getRetorno();
+                            progressBar.setVisibility(View.GONE);
+                            if(retorno.Search != null) {
+                                textViewSubtexto.setText(retorno.totalResults + " " + getString(R.string.avaliar_resultados_sub));
+                                adapter.setFilmes(retorno.Search);
+                            } else {
+                                mainActivity.showToast(getString(R.string.avaliar_resultados_null));
+                                mainActivity.onBackPressed();
+                            }
+                        }
+                    });
+                }
+                @Override
+                public void onFailure() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainActivity.showToast(getString(R.string.avaliar_resultados_internet));
+                            mainActivity.onBackPressed();
+                        }
+                    });
+                }
+            };
         }
 
-        if (ano.equals(""))
-            textViewTexto.setText("Busca por \"" + titulo + "\"");
-        else
-            textViewTexto.setText("Busca por \"" + titulo + " " + ano + "\"");
+        String texto = getString(R.string.avaliar_resultados_texto) + " \"" + titulo;
+        texto += ano.equals("") ? "\"" : " " + ano + "\"";
+        textViewTexto.setText(texto);
         textViewSubtexto.setText("");
         progressBar.setVisibility(View.VISIBLE);
-        adapter = new AvaliarResultadosRecyclerViewAdapter();
+
+        adapter = new AvaliarResultadosAdapter();
+        adapter.setOnClickListener(new AvaliarResultadosAdapter.SearchResultOnClickListener() {
+            @Override
+            public void onClick(Filme filme) {
+                mainActivity.redirectToAvaliarFilme(filme);
+            }
+        });
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnClickListener(new AvaliarResultadosRecyclerViewAdapter.SearchResultOnClickListener() {
-            @Override
-            public void abrirTelaAvaliacao(Filme filme) {
-                ((MainActivity) getActivity()).mostrarAvaliarFilmeFragment(filme);
-            }
-        });
-
-        new OmdbApi() {
-            @Override
-            public void setAdapterFilmes() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Retorno retorno = getRetorno();
-                        if(retorno.Search != null) {
-                            progressBar.setVisibility(View.GONE);
-                            textViewSubtexto.setText(retorno.totalResults + " resultados");
-                            adapter.setFilmes(retorno.Search);
-                        } else {
-                            Toast.makeText(getContext(), "Nenhum resultado encontrado!", Toast.LENGTH_LONG).show();
-                            ((MainActivity) getActivity()).onBackPressed();
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(), "Sem conexão com internet!", Toast.LENGTH_LONG).show();
-                        ((MainActivity) getActivity()).onBackPressed();
-                    }
-                });
-            }
-        }.buscarFilme(titulo, ano, indexTipo);
+        omdbApi.buscarFilme(titulo, ano, indexTipo);
 
         return view;
     }
-
-    public void carregarAtributos(String titulo, String ano, int indexTipo) {
-        this.titulo = titulo;
-        this.ano = ano;
-        this.indexTipo = indexTipo;
-    }
-
 }

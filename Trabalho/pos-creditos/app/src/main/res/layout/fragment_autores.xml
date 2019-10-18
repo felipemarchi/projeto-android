@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/padding_fragment"
     tools:context=".viewController.outros.AutoresFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="32dp"
+        android:paddingBottom="@dimen/space"
         android:text="@string/autores_texto"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/half_space">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:paddingRight="16dp"
+            android:paddingRight="@dimen/half_space"
             android:src="@drawable/autores_felipe_marchi" />
 
         <LinearLayout
@@ -36,32 +36,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Felipe Carreiro Marchi"
-                android:textSize="16dp"
+                android:textSize="@dimen/size_text"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="20 anos"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="f196695@dac.unicamp.br"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Limeira - SP"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="WEB e ASP.NET"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
         </LinearLayout>
     </LinearLayout>
 
@@ -69,12 +69,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/half_space">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:paddingRight="16dp"
+            android:paddingRight="@dimen/half_space"
             android:src="@drawable/autores_vinicius_abrantes" />
 
         <LinearLayout
@@ -87,32 +87,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Vinícius Abrantes Pereira"
-                android:textSize="16dp"
+                android:textSize="@dimen/size_text"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="20 anos"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="v206681@dac.unicamp.br"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Paulínia - SP"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Java e Python"
-                android:textSize="16dp" />
+                android:textSize="@dimen/size_text" />
         </LinearLayout>
     </LinearLayout>
 

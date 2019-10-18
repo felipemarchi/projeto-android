@@ -1,4 +1,4 @@
-package f196695_v206681.ft.unicamp.br.pos_creditos.controllers.email;
+package f196695_v206681.ft.unicamp.br.pos_creditos.controllers.gmail;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -13,22 +13,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/**
- * Created by ivan0 on 07/06/2016.
- */
+// Created by ivan0 on 07/06/2016.
 public class GmailSend extends javax.mail.Authenticator {
 
-    private String username = "contato.poscreditos";
-    private String password = "ulissesrobot";
+    private static String username = "contato.poscreditos";
+    private static String password = "ulissesrobot";
 
-    public GmailSend(String email_to,
-                     String email_subject,
-                     String email_body) {
-
-
-        Log.i("GmailSend", email_to);
-        Log.i("GmailSend", email_body);
-
+    public static boolean sendEmail(String email_to, String email_subject, String email_body) {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -63,6 +54,9 @@ public class GmailSend extends javax.mail.Authenticator {
 
         } catch (MessagingException e) {
             e.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 }

@@ -2,24 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="@dimen/padding_fragment"
     tools:context=".viewController.avaliar.AvaliarFilmeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="32dp">
+            android:paddingBottom="@dimen/space">
 
             <ImageView
                 android:id="@+id/avaliar_filme_poster"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:paddingRight="@dimen/min_space"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -29,9 +30,9 @@
 
                 <TextView
                     android:id="@+id/avaliar_filme_titulo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/size_title"
                     android:textStyle="bold" />
 
                 <RatingBar
@@ -47,37 +48,38 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingBottom="16dp">
+            android:paddingBottom="@dimen/half_space">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Assistido em:"
-                android:paddingRight="15dp"
-                android:textSize="16dp" />
+                android:text="@string/avaliar_filme_data"
+                android:paddingRight="@dimen/half_space"
+                android:textSize="@dimen/size_text" />
 
             <TextView
                 android:id="@+id/avaliar_filme_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-                android:textSize="20dp" />
+                android:textSize="@dimen/size_title" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/avaliar_filme_comentario"
+            android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:hint="Deixe seu comentário..."
+            android:hint="@string/avaliar_filme_comentario"
             android:minLines="5"
-            android:textSize="16dp" />
+            android:textSize="@dimen/size_text" />
 
         <Button
             android:id="@+id/avaliar_filme_avaliar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:text="Avaliar" />
+            android:text="@string/avaliar_filme_avaliar" />
     </LinearLayout>
 </ScrollView>

@@ -11,29 +11,24 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.DownloadImageTask;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 
-public class AvaliarResultadosRecyclerViewAdapter extends RecyclerView.Adapter {
+public class AvaliarResultadosAdapter extends RecyclerView.Adapter {
     private List<Filme> filmes;
     private SearchResultOnClickListener onClickListener;
 
-    AvaliarResultadosRecyclerViewAdapter() {
-        this.filmes = new ArrayList<>();
-    }
-
-    public interface SearchResultOnClickListener {
-        void abrirTelaAvaliacao(Filme filme);
+    public void setFilmes(List<Filme> filmes) {
+        this.filmes = filmes;
+        notifyDataSetChanged();
     }
 
     public void setOnClickListener(SearchResultOnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
 
-    public void setFilmes(List<Filme> filmes) {
-        this.filmes = filmes;
-        notifyDataSetChanged();
+    AvaliarResultadosAdapter() {
+        this.filmes = new ArrayList<>();
     }
 
     @NonNull
@@ -41,34 +36,34 @@ public class AvaliarResultadosRecyclerViewAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_avaliar_resultados, parent,false);
         final SearchResultViewHolder viewHolder = new SearchResultViewHolder(view);
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onClickListener != null) {
-                    onClickListener.abrirTelaAvaliacao(filmes.get(viewHolder.getIndex()));
+                    onClickListener.onClick(filmes.get(viewHolder.getIndex()));
                 }
             }
         });
-
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((SearchResultViewHolder) holder).onBind(filmes.get(position), position);
     }
-
     @Override
     public int getItemCount() {
         return filmes.size();
     }
 
     private class SearchResultViewHolder extends RecyclerView.ViewHolder {
+        private int index;
         private ImageView imagePoster;
         private TextView textTitulo;
         private TextView textAno;
-        private int index;
+
+        public int getIndex() {
+            return index;
+        }
 
         public SearchResultViewHolder(View itemView) {
             super(itemView);
@@ -79,19 +74,16 @@ public class AvaliarResultadosRecyclerViewAdapter extends RecyclerView.Adapter {
 
         public void onBind(final Filme filme, final int position) {
             this.index = position;
-
             filme.getSetPoster(imagePoster);
-
             textTitulo.setText(filme.getTitle());
-
             String ano = filme.getYear();
             if (ano.length() == 5)
                 ano = ano.replace("–", "");
             textAno.setText(ano);
         }
+    }
 
-        public int getIndex() {
-            return index;
-        }
+    public interface SearchResultOnClickListener {
+        void onClick(Filme filme);
     }
 }

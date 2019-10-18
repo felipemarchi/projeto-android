@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewController.home.HomeFragment"
-    android:padding="20dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".viewController.home.HomeFragment">
 
-    <RelativeLayout
+    <LinearLayout
+        android:padding="@dimen/padding_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/home_text_filme"
+        <!-- <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp"
-            android:text="@string/home_texto"
-            android:textSize="20dp" />
+            android:layout_margin="@dimen/mtrl_card_spacing"
+            app:cardBackgroundColor="@color/colorAccent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/half_space">
+                <ImageView
+                    android:src="@color/colorPrimary"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/half_space"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:textSize="@dimen/size_title"
+                        android:textStyle="bold"
+                        android:text="Título do cartão"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="Texto explicativo do cartao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView> -->
 
-    </RelativeLayout>
-
-</FrameLayout>
+    </LinearLayout>
+</ScrollView>

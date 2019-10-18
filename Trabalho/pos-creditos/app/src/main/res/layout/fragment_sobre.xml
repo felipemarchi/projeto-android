@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/padding_fragment"
     tools:context=".viewController.outros.SobreFragment">
 
     <ImageView
@@ -17,38 +17,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Pós-créditos"
-        android:textSize="20dp"
+        android:text="@string/app_nome"
+        android:textSize="@dimen/size_title"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingBottom="32dp"
-        android:text="V 0.0.1"
-        android:textSize="16dp" />
+        android:paddingBottom="@dimen/space"
+        android:text="@string/app_versao"
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="32dp"
-        android:text="@string/sobre_frase"
+        android:paddingBottom="@dimen/space"
+        android:text="@string/app_slogan"
         android:gravity="center"
-        android:textSize="16dp"
+        android:textSize="@dimen/size_text"
         android:textStyle="italic" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:paddingBottom="@dimen/half_space"
         android:text="@string/sobre_texto"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:paddingBottom="@dimen/half_space"
         android:text="@string/sobre_adicional"
-        android:textSize="16dp" />
+        android:textSize="@dimen/size_text" />
 </LinearLayout>

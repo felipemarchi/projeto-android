@@ -1,43 +1,54 @@
 <resources>
-    <string name="app_name">Pós-créditos</string>
-
+    <string name="app_versao">V 0.0.1</string>
+    <string name="app_nome">Pós-créditos</string>
+    <string name="app_email">contato.poscreditos@gmail.com</string>
+    <string name="app_slogan">Encontre seu crítico interior!</string>
     <string name="navigation_drawer_open">Abrir menu</string>
     <string name="navigation_drawer_close">Fechar menu</string>
-
     <string name="nav_header_title">Pós-créditos</string>
-    <string name="nav_header_subtitle">Encontre seu crítico interior</string>
     <string name="nav_header_desc">Navigation header</string>
-
-    <string name="kebab_menu_sobre">Sobre</string>
-    <string name="kebab_menu_autores">Autores</string>
-
     <string name="navigation_drawer_home">Home</string>
     <string name="navigation_drawer_avaliar">Avaliar</string>
     <string name="navigation_drawer_consultar">Consultar</string>
     <string name="navigation_drawer_contato">Contato</string>
-
-    <string name="home_texto">Home</string>
-
+    <string name="kebab_sobre">Sobre</string>
+    <string name="kebab_autores">Autores</string>
+    <string name="home_titulo">Home</string>
+    <string name="avaliar_titulo">Avaliar</string>
     <string name="avaliar_texto">1. Busque por um filme</string>
-    <string name="avaliar_titulo">Título</string>
+    <string name="avaliar_filme">Título</string>
     <string name="avaliar_ano">Ano</string>
-    <string name="avaliar_buscar">Buscar</string>
     <string-array name="avaliar_tipo">
         <item>Filmes e Séries</item>
         <item>Filmes</item>
         <item>Séries</item>
     </string-array>
-
-    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
-
+    <string name="avaliar_buscar">Buscar</string>
+    <string name="avaliar_resultados_titulo">Avaliar</string>
+    <string name="avaliar_resultados_texto">Busca por</string>
+    <string name="avaliar_resultados_sub">resultados</string>
+    <string name="avaliar_resultados_null">Nenhum resultado encontrado!</string>
+    <string name="avaliar_resultados_internet">Sem conexão com internet!</string>
+    <string name="avaliar_filme_titulo">Avaliar</string>
+    <string name="avaliar_filme_data">Assistido em:</string>
+    <string name="avaliar_filme_comentario">Deixe seu comentário...</string>
+    <string name="avaliar_filme_avaliar">Avaliar</string>
+    <string name="avaliar_filme_sucesso">Avaliação salva</string>
+    <string name="avaliar_filme_falha">Operação falhou</string>
+    <string name="contato_titulo">Contato</string>
     <string name="contato_texto">Deixe-nos uma mensagem!</string>
     <string name="contato_nome">E-mail</string>
     <string name="contato_assunto">Assunto</string>
     <string name="contato_mensagem">Mensagem</string>
-    <string name="contato_limpar">Limpar</string>
     <string name="contato_enviar">Enviar</string>
-
+    <string name="contato_sucesso">Contato enviado</string>
+    <string name="contato_falha">Falha no envio</string>
+    <string name="sobre_titulo">Sobre</string>
     <string name="sobre_texto">Pós-créditos te permite salvar avaliações de filmes para consultar quando quiser! Nossa filmoteca mantém-se atualizada através da The Open Movie Database API</string>
     <string name="sobre_adicional">Projeto desenvolvido como parte integrante parcial da disciplina G_SI700A_2019S2 - Programação para Dispositivos Móveis, da Faculdade de Tecnologia da UNICAMP, ministrada pelo Professor Doutor Ulisses Martins Dias</string>
-    <string name="sobre_frase">Encontre seu crítico interior!</string>
+    <string name="autores_titulo">Autores</string>
+    <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -20,11 +19,11 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.application.MainActivity;
 import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseConection;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.LoadingDialogFragment;
 
 public class AvaliarFilmeFragment extends Fragment {
     View view;
-    Filme filme;
-    Calendar data;
+    MainActivity mainActivity;
 
     ImageView imagePoster;
     TextView textViewTitulo;
@@ -33,15 +32,25 @@ public class AvaliarFilmeFragment extends Fragment {
     TextView textViewComentario;
     Button buttonAvaliar;
 
-    public AvaliarFilmeFragment(Filme filme) {
+    Filme filme;
+    Calendar calendar;
+
+    public void setFilme(Filme filme) {
         this.filme = filme;
     }
 
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+        textViewData.setText(DateFormat.getDateInstance().format(calendar.getTime()));
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(R.string.avaliar_filme_titulo);
+
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_filme, container, false);
+            mainActivity = (MainActivity) getActivity();
 
             imagePoster = view.findViewById(R.id.avaliar_filme_poster);
             textViewTitulo = view.findViewById(R.id.avaliar_filme_titulo);
@@ -54,10 +63,8 @@ public class AvaliarFilmeFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     AvaliarDataDialogFragment datePicker = new AvaliarDataDialogFragment();
-
-                    if (data != null)
-                        datePicker.setCalendar(data);
-
+                    if (calendar != null)
+                        datePicker.setCalendar(calendar);
                     datePicker.show(getFragmentManager(), "data_fragment");
                 }
             });
@@ -65,14 +72,12 @@ public class AvaliarFilmeFragment extends Fragment {
             buttonAvaliar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) getActivity()).hideKeyboard();
+                    LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment();
+                    loadingDialogFragment.show(getFragmentManager(), "loading_fragment");
 
-                    if (data == null) {
-                        data = Calendar.getInstance();
-                    }
-
-                    filme.setAvaliacao(ratingBar.getRating(), data.getTime(), textViewComentario.getText().toString());
-                    Toast.makeText(getContext(), "Salvando avaliação", Toast.LENGTH_SHORT).show();
+                    if (calendar == null)
+                        calendar = Calendar.getInstance();
+                    filme.setAvaliacao(ratingBar.getRating(), calendar.getTime(), textViewComentario.getText().toString());
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -80,34 +85,32 @@ public class AvaliarFilmeFragment extends Fragment {
                             (new FirebaseConection() {
                                 @Override
                                 public void onSuccess() {
-                                    ((MainActivity) getActivity()).goBackToHomeFragment();
-                                    Toast.makeText(getContext(), "Avaliação salva", Toast.LENGTH_SHORT).show();
+                                    ratingBar.setRating(0);
+                                    textViewComentario.setText("");
+                                    LoadingDialogFragment loadingDialogFragment = (LoadingDialogFragment) getFragmentManager().findFragmentByTag("loading_fragment");
+                                    loadingDialogFragment.dismiss();
+                                    mainActivity.showToast(getString(R.string.avaliar_filme_sucesso));
+                                    mainActivity.popAllFragments();
                                 }
-
                                 @Override
                                 public void onFailure() {
-                                    Toast.makeText(getContext(), "Operação falhou", Toast.LENGTH_SHORT).show();
+                                    LoadingDialogFragment loadingDialogFragment = (LoadingDialogFragment) getFragmentManager().findFragmentByTag("loading_fragment");
+                                    loadingDialogFragment.dismiss();
+                                    mainActivity.showToast(getString(R.string.avaliar_filme_falha));
                                 }
                             }).salvarAvaliacao(filme);
                         }
                     });
                 }
             });
-
         }
 
         filme.getSetPoster(imagePoster);
         textViewTitulo.setText(filme.getTitle());
+        ratingBar.setRating(0);
         textViewData.setText(DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
+        textViewComentario.setText("");
+
         return view;
-    }
-
-    public void setFilme(Filme filme) {
-        this.filme = filme;
-    }
-
-    public void setData(Calendar data) {
-        this.data = data;
-        textViewData.setText(DateFormat.getDateInstance().format(data.getTime()));
     }
 }

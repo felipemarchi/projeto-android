@@ -10,18 +10,23 @@ import android.widget.DatePicker;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 
 public class AvaliarDataDialogFragment extends DialogFragment {
     View view;
+    Calendar calendar;
+
     DatePicker datePicker;
     Button buttonSalvar;
-    private Calendar calendar;
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_data, container, false);
 
@@ -35,26 +40,21 @@ public class AvaliarDataDialogFragment extends DialogFragment {
                     int mes = datePicker.getMonth();
                     int dia = datePicker.getDayOfMonth();
 
-                    Calendar data = Calendar.getInstance();
-                    data.set(ano, mes, dia);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(ano, mes, dia);
 
                     AvaliarFilmeFragment avaliarFilmeFragment = (AvaliarFilmeFragment) getFragmentManager().findFragmentByTag("avaliar_filme_fragment");
-                    avaliarFilmeFragment.setData(data);
+                    avaliarFilmeFragment.setCalendar(calendar);
 
                     dismiss();
                 }
             });
-
-            if (calendar != null) {
-                datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            }
-
         }
 
-        return view;
-    }
+        datePicker.setMaxDate(new Date().getTime());
+        if (calendar != null)
+            datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
+        return view;
     }
 }

@@ -13,14 +13,9 @@ public class SobreFragment extends Fragment {
 
     View view;
 
-    public SobreFragment() {
-
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        getActivity().setTitle("Sobre");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(R.string.sobre_titulo);
 
         if (view == null)
             view = inflater.inflate(R.layout.fragment_sobre, container, false);
