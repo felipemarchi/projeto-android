@@ -27,13 +27,21 @@
             android:icon="@drawable/ic_menu_share"
             android:title="Jogo 2" />
         <item
-            android:id="@+id/nav_kolin_activity"
+            android:id="@+id/nav_jogo3"
             android:icon="@drawable/ic_menu_camera"
+            android:title="Jogo 3" />
+        <item
+            android:id="@+id/nav_kolin_activity"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Kotlin Activity" />
         <item
             android:id="@+id/nav_database"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Database" />
+        <item
+            android:id="@+id/nav_internet"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Internet" />
     </group>
 
 

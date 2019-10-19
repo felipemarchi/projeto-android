@@ -3,6 +3,7 @@
     package="f196695_v206681.ft.unicamp.br.aulas">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

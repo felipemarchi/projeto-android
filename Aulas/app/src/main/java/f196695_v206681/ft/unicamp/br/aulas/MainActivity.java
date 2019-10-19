@@ -22,7 +22,9 @@ import f196695_v206681.ft.unicamp.br.aulas.alunos.OnBiografiaRequest;
 import f196695_v206681.ft.unicamp.br.aulas.alunos.AlunosFragment;
 import f196695_v206681.ft.unicamp.br.aulas.autores.AutoresFragment;
 import f196695_v206681.ft.unicamp.br.aulas.biografias.BiografiasFragment;
+import f196695_v206681.ft.unicamp.br.aulas.games.frases.FrasesFragment;
 import f196695_v206681.ft.unicamp.br.aulas.games.name.NameFragment;
+import f196695_v206681.ft.unicamp.br.aulas.internet.InternetFragment;
 import f196695_v206681.ft.unicamp.br.aulas.kotlin.KotlinActivity;
 import f196695_v206681.ft.unicamp.br.aulas.games.puzzle.PuzzleFragment;
 import f196695_v206681.ft.unicamp.br.aulas.database.DatabaseFragment;
@@ -172,6 +174,16 @@ public class MainActivity extends AppCompatActivity
             if (dabaseFragment == null)
                 dabaseFragment = new DatabaseFragment();
             replaceFragment(dabaseFragment, "database_fragment");
+        } else if (id == R.id.nav_internet) {
+            Fragment internetFragment = fragmentManager.findFragmentByTag("internet_fragment");
+            if (internetFragment == null)
+                internetFragment = new InternetFragment();
+            replaceFragment(internetFragment, "internet_fragment");
+        } else if (id == R.id.nav_jogo3) {
+            Fragment frasesFragment = fragmentManager.findFragmentByTag("frases_fragment");
+            if (frasesFragment == null)
+                frasesFragment = new FrasesFragment();
+            replaceFragment(frasesFragment, "frases_fragment");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

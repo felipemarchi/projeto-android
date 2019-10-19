@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,55 +5,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main"
-    android:padding="20dp">
+    tools:showIn="@layout/activity_main">
 
     <EditText
         android:id="@+id/edtId"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite o ID"/>
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/edtTexto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite a mensagem"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnInserir"
-            android:text="Insert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="Inserir" />
 
         <Button
             android:id="@+id/btnAtualizar"
-            android:text="Update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="Atualizar" />
 
         <Button
             android:id="@+id/btnRemover"
-            android:text="Delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
-        <Button
-            android:id="@+id/btnSelecionar"
-            android:text="Select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:textColor="@color/colorWhite"
-            />
+            android:text="Remover" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,19 +46,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txtOutputId"
+        <Button
+            android:id="@+id/btnATask1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:textSize="16dp"
-            android:gravity="center"/>
-        <TextView
-            android:id="@+id/txtOutputMens"
+            android:text="ATask1" />
+
+        <Button
+            android:id="@+id/btnATask2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight=".75"
-            android:textSize="16dp"
-            />
+            android:text="ATask2" />
+
+        <Button
+            android:id="@+id/btnATask3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATask3" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btnSelecionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecionar" />
 </LinearLayout>
