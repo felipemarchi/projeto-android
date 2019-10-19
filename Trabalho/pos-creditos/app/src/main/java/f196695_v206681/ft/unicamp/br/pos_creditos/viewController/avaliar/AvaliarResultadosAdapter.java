@@ -19,7 +19,10 @@ public class AvaliarResultadosAdapter extends RecyclerView.Adapter {
     private SearchResultOnClickListener onClickListener;
 
     public void setFilmes(List<Filme> filmes) {
-        this.filmes = filmes;
+        if (this.filmes.size() > 0)
+            this.filmes.addAll(filmes);
+        else
+            this.filmes = filmes;
         notifyDataSetChanged();
     }
 

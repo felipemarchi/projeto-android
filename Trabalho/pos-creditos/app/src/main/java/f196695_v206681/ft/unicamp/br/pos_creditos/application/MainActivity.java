@@ -51,7 +51,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.navigation_drawer_home);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                hideKeyboard();
+                super.onDrawerOpened(drawerView);
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -80,13 +86,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.kebab, menu);
-        return true;
-    }
+            getMenuInflater().inflate(R.menu.kebab, menu);
+            return true;
+        }
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-            navigationView.getCheckedItem().setCheckable(false);
+            navigationView.getCheckedItem().setChecked(false);
 
             int id = item.getItemId();
             if (id == R.id.kebab_sobre)
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public boolean onNavigationItemSelected(MenuItem item) {
             redirectToFragment(item.getItemId());
             drawer.closeDrawer(GravityCompat.START);
+            navigationView.getCheckedItem().setChecked(true);
             return true;
         }
 

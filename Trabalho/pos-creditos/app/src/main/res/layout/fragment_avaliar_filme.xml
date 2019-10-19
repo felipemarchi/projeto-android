@@ -20,6 +20,7 @@
                 android:id="@+id/avaliar_filme_poster"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:src="@drawable/loading_poster"
                 android:paddingRight="@dimen/min_space"/>
 
             <LinearLayout
@@ -68,6 +69,7 @@
         <EditText
             android:id="@+id/avaliar_filme_comentario"
             android:inputType="textMultiLine"
+            android:importantForAutofill="no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"

@@ -23,8 +23,10 @@ public abstract class OmdbApi {
         return retorno;
     }
 
-    private String montaUrl(String titulo, String ano, int indexTipo) {
-        String url = urlBase + "&s=" + titulo.replaceAll(" ", "+");
+    private String montaUrl(String titulo, String ano, int indexTipo, int pagina) {
+        String url = urlBase;
+
+        url += "&s=" + titulo.replaceAll(" ", "+");
 
         if (!ano.isEmpty())
             url += "&y=" + ano;
@@ -34,11 +36,13 @@ public abstract class OmdbApi {
         else if (indexTipo == 2)
             url += "&type=series";
 
+        url += "&page=" + pagina;
+
         return url;
     }
 
-    public void buscarFilme(String titulo, String ano, int indexTipo) {
-        Request request = new Request.Builder().url(montaUrl(titulo,ano,indexTipo)).build();
+    public void buscarFilme(String titulo, String ano, int indexTipo, int pagina) {
+        Request request = new Request.Builder().url(montaUrl(titulo,ano,indexTipo,pagina)).build();
         OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override

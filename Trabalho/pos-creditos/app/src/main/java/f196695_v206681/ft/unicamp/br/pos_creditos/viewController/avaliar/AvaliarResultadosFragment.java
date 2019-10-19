@@ -2,6 +2,7 @@ package f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,8 @@ public class AvaliarResultadosFragment extends Fragment {
     String titulo;
     String ano;
     int indexTipo;
+    int pagina;
+    int total;
 
     public void carregarAtributos(Bundle arguments) {
         this.titulo = arguments.getString("titulo");
@@ -46,11 +49,22 @@ public class AvaliarResultadosFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_resultados, container, false);
             mainActivity = (MainActivity) getActivity();
+            pagina = 1;
 
             textViewTexto = view.findViewById(R.id.avaliar_resultados_texto);
             textViewSubtexto = view.findViewById(R.id.avaliar_resultados_subtexto);
             progressBar = view.findViewById(R.id.avaliar_resultados_loading);
             recyclerView = view.findViewById(R.id.avaliar_resultados_recycler_view);
+
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (!recyclerView.canScrollVertically(1) && (total > pagina*10)) {
+                        omdbApi.buscarFilme(titulo, ano, indexTipo, ++pagina);
+                    }
+                }
+            });
 
             omdbApi = new OmdbApi() {
                 @Override
@@ -60,8 +74,9 @@ public class AvaliarResultadosFragment extends Fragment {
                         public void run() {
                             Retorno retorno = getRetorno();
                             progressBar.setVisibility(View.GONE);
+                            total = Integer.parseInt(retorno.totalResults);
                             if(retorno.Search != null) {
-                                textViewSubtexto.setText(retorno.totalResults + " " + getString(R.string.avaliar_resultados_sub));
+                                textViewSubtexto.setText(total + " " + getString(R.string.avaliar_resultados_sub));
                                 adapter.setFilmes(retorno.Search);
                             } else {
                                 mainActivity.showToast(getString(R.string.avaliar_resultados_null));
@@ -101,7 +116,7 @@ public class AvaliarResultadosFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        omdbApi.buscarFilme(titulo, ano, indexTipo);
+        omdbApi.buscarFilme(titulo, ano, indexTipo, pagina);
 
         return view;
     }
