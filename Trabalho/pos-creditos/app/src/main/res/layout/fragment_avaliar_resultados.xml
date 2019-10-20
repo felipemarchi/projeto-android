@@ -39,7 +39,7 @@
             android:id="@+id/avaliar_resultados_recycler_view"
             android:layout_below="@id/avaliar_resultados_subtexto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 </FrameLayout>

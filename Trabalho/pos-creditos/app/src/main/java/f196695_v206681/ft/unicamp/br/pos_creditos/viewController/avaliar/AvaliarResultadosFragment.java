@@ -61,6 +61,7 @@ public class AvaliarResultadosFragment extends Fragment {
                 public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
                     if (!recyclerView.canScrollVertically(1) && (total > pagina*10)) {
+                        progressBar.setVisibility(View.VISIBLE);
                         omdbApi.buscarFilme(titulo, ano, indexTipo, ++pagina);
                     }
                 }

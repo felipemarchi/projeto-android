@@ -40,9 +40,9 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/autores_idade_felipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20 anos"
                 android:textSize="@dimen/size_text" />
 
             <TextView
@@ -60,7 +60,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="WEB e ASP.NET"
+                android:text="WEB / ASP.NET"
                 android:textSize="@dimen/size_text" />
         </LinearLayout>
     </LinearLayout>
@@ -91,9 +91,9 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/autores_idade_vinicius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20 anos"
                 android:textSize="@dimen/size_text" />
 
             <TextView
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Java e Python"
+                android:text="Java / Python"
                 android:textSize="@dimen/size_text" />
         </LinearLayout>
     </LinearLayout>
