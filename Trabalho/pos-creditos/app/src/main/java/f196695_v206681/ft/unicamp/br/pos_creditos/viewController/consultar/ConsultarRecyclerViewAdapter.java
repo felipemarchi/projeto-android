@@ -8,6 +8,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +16,15 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.FilmeAssistido;
 
 public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
-        private ArrayList<FilmeAssistido> filmes;
+    private List<FilmeAssistido> filmes;
 
-        ConsultarRecyclerViewAdapter(ArrayList<FilmeAssistido> filmes) {
-            this.filmes = filmes;
+    public void setFilmes(List<FilmeAssistido> filmes) {
+        this.filmes = filmes;
+        notifyDataSetChanged();
+    }
+
+        ConsultarRecyclerViewAdapter() {
+            filmes = new ArrayList<>();
         }
 
         @NonNull
@@ -56,7 +62,7 @@ public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
 
             public void onBind(final FilmeAssistido filme, final int position) {
                 this.position = position;
-                imagePoster.setImageResource(filme.getPoster());
+                filme.getSetPoster(imagePoster);
                 textTitulo.setText(filme.getTitulo());
                 textAno.setText(filme.getAno());
                 ratingBar.setRating((float) filme.getAvaliacao());

@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.application.MainActivity;
-import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseConection;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseSalvar;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.LoadingDialogFragment;
 
@@ -82,7 +82,7 @@ public class AvaliarFilmeFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            (new FirebaseConection() {
+                            (new FirebaseSalvar() {
                                 @Override
                                 public void onSuccess() {
                                     ratingBar.setRating(0);

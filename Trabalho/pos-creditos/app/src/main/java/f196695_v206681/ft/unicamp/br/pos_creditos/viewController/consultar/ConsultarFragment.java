@@ -6,14 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
-import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.FilmesAvaliados;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseBuscar;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ConsultarFragment extends Fragment {
 
@@ -36,10 +33,16 @@ public class ConsultarFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter = new ConsultarRecyclerViewAdapter(new ArrayList(Arrays.asList(FilmesAvaliados.filmesAvaliados)));
+        adapter = new ConsultarRecyclerViewAdapter();
+
+        (new FirebaseBuscar() {
+            @Override
+            public void onSuccess() {
+                adapter.setFilmes(getFilmes());
+            }
+        }).buscarAvaliacoes();
 
         recyclerView.setAdapter(adapter);
-
         return view;
     }
 
