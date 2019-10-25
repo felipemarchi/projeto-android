@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ContatoFragment extends Fragment {
 
     View view;
@@ -34,6 +36,9 @@ public class ContatoFragment extends Fragment {
             textViewEmail = view.findViewById(R.id.contato_email);
             textViewAssunto = view.findViewById(R.id.contato_assunto);
             textViewMensagem = view.findViewById(R.id.contato_mensagem);
+
+            if (FirebaseAuth.getInstance() != null)
+                textViewEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
             view.findViewById(R.id.contato_enviar).setOnClickListener(new Button.OnClickListener() {
                 @Override

@@ -56,22 +56,19 @@ public class AvaliarFragment extends Fragment {
                 }
             });
 
+            editTextAno.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!editTextTitulo.getText().toString().isEmpty()) {
+                        openResultsFragment();
+                    }
+                }
+            });
+
             buttonBuscar.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String titulo = editTextTitulo.getText().toString();
-                    String ano = editTextAno.getText().toString();
-                    int indexTipo = spinnerTipo.getSelectedItemPosition();
-
-                    editTextTitulo.setText("");
-                    editTextAno.setText("");
-                    spinnerTipo.setSelection(0);
-
-                    Bundle arguments = new Bundle();
-                    arguments.putString("titulo", titulo);
-                    arguments.putString("ano", ano);
-                    arguments.putString("indexTipo", Integer.toString(indexTipo));
-                    mainActivity.redirectToFragment(R.id.avaliar_resultados_titulo, arguments);
+                    openResultsFragment();
                 }
             });
         }
@@ -81,6 +78,22 @@ public class AvaliarFragment extends Fragment {
         mainActivity.showKeyboard();
 
         return view;
+    }
+
+    private void openResultsFragment() {
+        String titulo = editTextTitulo.getText().toString();
+        String ano = editTextAno.getText().toString();
+        int indexTipo = spinnerTipo.getSelectedItemPosition();
+
+        editTextTitulo.setText("");
+        editTextAno.setText("");
+        spinnerTipo.setSelection(0);
+
+        Bundle arguments = new Bundle();
+        arguments.putString("titulo", titulo);
+        arguments.putString("ano", ano);
+        arguments.putString("indexTipo", Integer.toString(indexTipo));
+        mainActivity.redirectToFragment(R.id.avaliar_resultados_titulo, arguments);
     }
 
 }

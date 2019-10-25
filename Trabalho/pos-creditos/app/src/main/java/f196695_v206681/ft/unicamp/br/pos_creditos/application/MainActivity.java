@@ -1,6 +1,7 @@
 package f196695_v206681.ft.unicamp.br.pos_creditos.application;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.view.GravityCompat;
@@ -8,7 +9,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -34,14 +39,23 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView;
     FragmentManager fragmentManager;
     DrawerLayout drawer;
 
+    private int RC_SIGN_IN;
+    private FirebaseUser user;
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkAuth();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
@@ -66,6 +80,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.frame, new HomeFragment(), "home_fragment");
             fragmentTransaction.commit();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            if (resultCode == RESULT_OK) {
+                user = firebaseAuth.getCurrentUser();
+            } else {
+                if (response == null) {
+                    finish();
+                } else {
+                    // use response.getError().getErrorCode() and handle the error.
+                }
+            }
         }
     }
 
@@ -108,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (autoresFragment == null)
                     autoresFragment = new AutoresFragment();
                 replaceFragment(autoresFragment, "autores_fragment");
+            } else if (id == R.id.kebab_logout) {
+                firebaseAuth.signOut();
+                checkAuth();
             }
 
             return super.onOptionsItemSelected(item);
@@ -134,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             else if (currentFragment instanceof ContatoFragment)
                 navigationView.setCheckedItem(R.id.navigation_drawer_contato);
             else
-                navigationView.getCheckedItem().setCheckable(false);
+                navigationView.getCheckedItem().setChecked(false);
         }
 
         public void replaceFragment(Fragment fragment, String tag) {
@@ -221,4 +257,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             avaliarFilmeFragment.setFilme(filme);
             replaceFragment(avaliarFilmeFragment, "avaliar_filme_fragment");
         }
+
+    private void checkAuth() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        if (user == null) {
+            List<AuthUI.IdpConfig> providers = Arrays.asList(
+            new AuthUI.IdpConfig.PhoneBuilder().build(),
+            new AuthUI.IdpConfig.FacebookBuilder().build(),
+            new AuthUI.IdpConfig.GoogleBuilder().build(),
+            new AuthUI.IdpConfig.EmailBuilder().build());
+
+            // Create and launch sign-in intent
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setLogo(R.drawable.logo_icon)
+                            .setAvailableProviders(providers)
+                            .build(),
+                    RC_SIGN_IN);
+        }
+    }
 }

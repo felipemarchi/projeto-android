@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import f196695_v206681.ft.unicamp.br.pos_creditos.application.MainActivity;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.OmdbApi;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.TmdbApi;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Retorno;
 
@@ -20,7 +21,7 @@ import android.widget.TextView;
 
 public class AvaliarResultadosFragment extends Fragment {
     View view;
-    OmdbApi omdbApi;
+    TmdbApi tmdbApi;
     MainActivity mainActivity;
     AvaliarResultadosAdapter adapter;
 
@@ -62,12 +63,12 @@ public class AvaliarResultadosFragment extends Fragment {
                     super.onScrollStateChanged(recyclerView, newState);
                     if (!recyclerView.canScrollVertically(1) && (total > pagina*10)) {
                         progressBar.setVisibility(View.VISIBLE);
-                        omdbApi.buscarFilme(titulo, ano, indexTipo, ++pagina);
+                        tmdbApi.buscarFilme(titulo, ano, indexTipo, ++pagina);
                     }
                 }
             });
 
-            omdbApi = new OmdbApi() {
+            tmdbApi = new TmdbApi() {
                 @Override
                 public void onSuccess() {
                     getActivity().runOnUiThread(new Runnable() {
@@ -75,10 +76,10 @@ public class AvaliarResultadosFragment extends Fragment {
                         public void run() {
                             Retorno retorno = getRetorno();
                             progressBar.setVisibility(View.GONE);
-                            total = Integer.parseInt(retorno.totalResults);
-                            if(retorno.Search != null) {
+                            if (retorno.getTotal_results() != 0) {
+                                total = retorno.getTotal_results();
                                 textViewSubtexto.setText(total + " " + getString(R.string.avaliar_resultados_sub));
-                                adapter.setFilmes(retorno.Search);
+                                adapter.setFilmes(retorno.getResults());
                             } else {
                                 mainActivity.showToast(getString(R.string.avaliar_resultados_null));
                                 mainActivity.onBackPressed();
@@ -117,7 +118,7 @@ public class AvaliarResultadosFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        omdbApi.buscarFilme(titulo, ano, indexTipo, pagina);
+        tmdbApi.buscarFilme(titulo, ano, indexTipo, pagina);
 
         return view;
     }

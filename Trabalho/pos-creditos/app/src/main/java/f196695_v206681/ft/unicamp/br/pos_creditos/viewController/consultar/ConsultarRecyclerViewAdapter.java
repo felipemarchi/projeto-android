@@ -63,8 +63,8 @@ public class ConsultarRecyclerViewAdapter extends RecyclerView.Adapter {
             public void onBind(final FilmeAssistido filme, final int position) {
                 this.position = position;
                 filme.getSetPoster(imagePoster);
-                textTitulo.setText(filme.getTitulo());
-                textAno.setText(filme.getAno());
+                textTitulo.setText(filme.getTitle());
+                textAno.setText(filme.getRelease_date().substring(0, 4));
                 ratingBar.setRating((float) filme.getAvaliacao());
             }
 

@@ -11,11 +11,11 @@ public class FilmeAssistido {
     private double avaliacao;
     private String comentario;
     private Timestamp dataAvaliacao;
-    private String imddbId;
-    private String poster;
-    private String titulo;
-    private String tipo;
-    private String ano;
+
+    private long id;
+    private String title;
+    private String release_date;
+    private String poster_path;
 
     public double getAvaliacao() {
         return avaliacao;
@@ -41,50 +41,44 @@ public class FilmeAssistido {
         this.dataAvaliacao = dataAvaliacao;
     }
 
-    public String getImddbId() {
-        return imddbId;
+    public long getId() {
+        return id;
     }
 
-    public void setImddbId(String imddbId) {
-        this.imddbId = imddbId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getPoster() {
-        return poster;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getAno() {
-        return ano;
-    }
-
-    public void setAno(String ano) {
-        this.ano = ano;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     public void getSetPoster(ImageView imagePoster) {
-        if (this.getPoster().equals("N/A"))
+        if (this.getPoster_path().equals("N/A"))
             imagePoster.setImageResource(R.drawable.default_poster);
-        else
-            new DownloadImageTask(imagePoster).execute(this.getPoster());
+        else {
+            String url = "https://image.tmdb.org/t/p/w185/" + this.getPoster_path();
+            new DownloadImageTask(imagePoster).execute(url);
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -29,7 +30,7 @@ public abstract class FirebaseBuscar {
     public void buscarAvaliacoes() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("filmes")
+        db.collection(FirebaseAuth.getInstance().getUid())
             .get()
             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
@@ -37,15 +38,13 @@ public abstract class FirebaseBuscar {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             FilmeAssistido filme = new FilmeAssistido();
-                            filme.setAvaliacao((Double) document.get("avaliacao"));
+                            filme.setId((long)document.get("id"));
+                            filme.setPoster_path((String) document.get("poster_path"));
+                            filme.setTitle((String) document.get("title"));
+                            filme.setRelease_date((String) document.get("release_date"));
+                            filme.setAvaliacao((double) document.get("avaliacao"));
                             filme.setComentario((String) document.get("comentario"));
                             filme.setDataAvaliacao((Timestamp) document.get("dataAvaliacao"));
-                            filme.setImddbId((String) document.get("imdbId"));
-                            filme.setPoster((String) document.get("poster"));
-                            filme.setTitulo((String) document.get("title"));
-                            filme.setTipo((String) document.get("type"));
-                            filme.setAno((String) document.get("year"));
-
                             filmes.add(filme);
                         }
 

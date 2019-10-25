@@ -81,10 +81,7 @@ public class AvaliarResultadosAdapter extends RecyclerView.Adapter {
             this.index = position;
             filme.getSetPoster(imagePoster);
             textTitulo.setText(filme.getTitle());
-            String ano = filme.getYear();
-            if (ano.length() == 5)
-                ano = ano.replace("–", "");
-            textAno.setText(ano);
+            textAno.setText(filme.getRelease_date().substring(0, 4));
         }
     }
 

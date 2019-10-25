@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:paddingTop="@dimen/padding_fragment"
+    android:paddingLeft="@dimen/padding_fragment"
+    android:paddingRight="@dimen/padding_fragment"
     tools:context=".viewController.consultar.ConsultarFragment">
 
     <RelativeLayout
@@ -14,9 +16,18 @@
             android:id="@+id/home_text_filme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp"
-            android:text="Suas avaliações:"
-            android:textSize="20dp" />
+            android:text="@string/consultar_avaliacoes"
+            android:textSize="@dimen/size_title"
+            android:paddingBottom="@dimen/half_space"/>
+
+        <ProgressBar
+            android:id="@+id/avaliar_resultados_loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="true" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/consultar_recycler_view"

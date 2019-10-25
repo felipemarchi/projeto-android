@@ -6,4 +6,7 @@
     <item
         android:id="@+id/kebab_autores"
         android:title="@string/kebab_autores" />
+    <item
+        android:id="@+id/kebab_logout"
+        android:title="@string/kebab_logout" />
 </menu>

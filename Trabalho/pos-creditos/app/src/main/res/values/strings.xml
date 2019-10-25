@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_versao">V 0.0.1</string>
-    <string name="app_nome">Post-credits</string>
+    <string name="app_name">Post-credits</string>
     <string name="app_email">contato.poscreditos@gmail.com</string>
     <string name="app_slogan">Find your inner critic!</string>
     <string name="navigation_drawer_open">Open menu</string>
@@ -11,8 +12,10 @@
     <string name="navigation_drawer_avaliar">Rate</string>
     <string name="navigation_drawer_consultar">Consult</string>
     <string name="navigation_drawer_contato">Contact</string>
+    <string name="sem_filmes_toast_consultar">There are no rates to show</string>
     <string name="kebab_sobre">About</string>
     <string name="kebab_autores">Developers</string>
+    <string name="kebab_logout" translatable="false">Logout</string>
     <string name="home_titulo">Home</string>
     <string name="avaliar_titulo">Rate</string>
     <string name="avaliar_texto">1. Search for a movie</string>
@@ -33,7 +36,7 @@
     <string name="avaliar_filme_data">Watched on:</string>
     <string name="avaliar_filme_comentario">Leave your comment...</string>
     <string name="avaliar_filme_avaliar">Rate</string>
-    <string name="avaliar_filme_sucesso">Saved Rating</string>
+    <string name="avaliar_filme_sucesso">Rating saved</string>
     <string name="avaliar_filme_falha">Operation failed</string>
     <string name="contato_titulo">Contact</string>
     <string name="contato_texto">Leave us a message!</string>
@@ -49,4 +52,10 @@
     <string name="autores_titulo">Developers</string>
     <string name="autores_texto">This project was entirely developed by students below who coursed Information Systems at UNICAMP</string>
     <string name="autores_anos">years old</string>
+    <string name="consultar_titulo">Consult</string>
+    <string name="consultar_avaliacoes">Your rates</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">769635683481516</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb769635683481516</string>
 </resources>

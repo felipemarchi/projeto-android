@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_versao">V 0.0.1</string>
-    <string name="app_nome">Pós-créditos</string>
+    <string name="app_name">Pós-créditos</string>
     <string name="app_email">contato.poscreditos@gmail.com</string>
     <string name="app_slogan">Encontre seu crítico interior!</string>
     <string name="navigation_drawer_open">Abrir menu</string>
@@ -37,6 +37,7 @@
     <string name="avaliar_filme_sucesso">Avaliação salva</string>
     <string name="avaliar_filme_falha">Operação falhou</string>
     <string name="contato_titulo">Contato</string>
+    <string name="sem_filmes_toast_consultar">Não existem avaliações</string>
     <string name="contato_texto">Deixe-nos uma mensagem!</string>
     <string name="contato_nome">E-mail</string>
     <string name="contato_assunto">Assunto</string>
@@ -50,4 +51,6 @@
     <string name="autores_titulo">Autores</string>
     <string name="autores_texto">Este projeto foi integralmente desenvolvido pelos seguintes estudantes de Bacharel em Sistemas de Informação na UNICAMP</string>
     <string name="autores_anos">anos</string>
+    <string name="consultar_titulo">Consultar</string>
+    <string name="consultar_avaliacoes">Suas avaliações</string>
 </resources>
