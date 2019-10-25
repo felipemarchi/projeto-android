@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Retorno;
+import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -15,8 +16,8 @@ public abstract class OmdbApi {
     public abstract void onSuccess();
     public abstract void onFailure();
 
-    private static String apikey = "ed9ff193";
-    private static String urlBase = "https://www.omdbapi.com/?apikey=" + apikey;
+    private static String apiKey = Utils.getOmdbApiKey();
+    private static String urlBase = "https://www.omdbapi.com/?apikey=" + apiKey;
     private Retorno retorno;
 
     public Retorno getRetorno() {

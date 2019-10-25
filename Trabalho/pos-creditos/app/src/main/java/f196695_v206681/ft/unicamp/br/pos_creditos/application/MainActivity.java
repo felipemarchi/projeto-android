@@ -24,7 +24,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
+import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseBuscar;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
+import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.SobreFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.AutoresFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFragment;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseBuscar.carregarUtils();
         checkAuth();
         super.onCreate(savedInstanceState);
 

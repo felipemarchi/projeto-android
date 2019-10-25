@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Retorno;
+import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -15,7 +16,7 @@ public abstract class TmdbApi {
     public abstract void onSuccess();
     public abstract void onFailure();
 
-    private static String apikey = "166e5c2be7dc1189ef89bc84bf04831b";
+    private static String apiKey = Utils.getTmdbApiKey();
     private static String urlBase = "http://api.themoviedb.org/3/search/";
     private Retorno retorno;
 
@@ -27,7 +28,7 @@ public abstract class TmdbApi {
         String url = urlBase;
         String query = titulo.replaceAll(" ", "+");
         String language = "pt-BR";
-        url += "movie?api_key=" + apikey + "&language=" + language + "&query=" + query;
+        url += "movie?api_key=" + apiKey + "&language=" + language + "&query=" + query;
 
         /*
         if (!ano.isEmpty())

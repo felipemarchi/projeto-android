@@ -15,6 +15,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.FilmeAssistido;
+import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -54,5 +55,26 @@ public abstract class FirebaseBuscar {
                     }
                 }
             });
+    }
+
+    public static void carregarUtils() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("utils")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Utils.setEmailPassword((String) document.get("email_password"));
+                                Utils.setOmdbApiKey((String) document.get("omdb_api_key"));
+                                Utils.setTmdbApiKey((String) document.get("tmdb_api_key"));
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 }
