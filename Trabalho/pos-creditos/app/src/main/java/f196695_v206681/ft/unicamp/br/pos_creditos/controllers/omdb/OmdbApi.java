@@ -16,8 +16,7 @@ public abstract class OmdbApi {
     public abstract void onSuccess();
     public abstract void onFailure();
 
-    private static String apiKey = Utils.getOmdbApiKey();
-    private static String urlBase = "https://www.omdbapi.com/?apikey=" + apiKey;
+    private static String urlBase = "https://www.omdbapi.com/?apikey=" + Utils.getOmdbApiKey();
     private Retorno retorno;
 
     public Retorno getRetorno() {

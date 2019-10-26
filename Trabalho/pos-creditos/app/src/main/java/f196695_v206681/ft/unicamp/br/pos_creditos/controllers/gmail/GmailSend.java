@@ -19,7 +19,6 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
 public class GmailSend extends javax.mail.Authenticator {
 
     private static String username = "contato.poscreditos";
-    private static String password = Utils.getEmailPassword();
 
     public static boolean sendEmail(String email_to, String email_subject, String email_body) {
         Properties properties = new Properties();
@@ -31,7 +30,7 @@ public class GmailSend extends javax.mail.Authenticator {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication(username, password);
+                return new javax.mail.PasswordAuthentication(username, Utils.getEmailPassword());
             }
         });
 

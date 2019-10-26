@@ -16,7 +16,6 @@ public abstract class TmdbApi {
     public abstract void onSuccess();
     public abstract void onFailure();
 
-    private static String apiKey = Utils.getTmdbApiKey();
     private static String urlBase = "http://api.themoviedb.org/3/search/";
     private Retorno retorno;
 
@@ -28,7 +27,7 @@ public abstract class TmdbApi {
         String url = urlBase;
         String query = titulo.replaceAll(" ", "+");
         String language = "pt-BR";
-        url += "movie?api_key=" + apiKey + "&language=" + language + "&query=" + query;
+        url += "movie?api_key=" + Utils.getTmdbApiKey() + "&language=" + language + "&query=" + query;
 
         /*
         if (!ano.isEmpty())
@@ -42,6 +41,8 @@ public abstract class TmdbApi {
         */
 
         //url += "&page=" + pagina;
+        System.out.println("aqui URL");
+        System.out.println(url);
         return url;
     }
 

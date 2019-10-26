@@ -70,6 +70,8 @@ public abstract class FirebaseBuscar {
                                 Utils.setEmailPassword((String) document.get("email_password"));
                                 Utils.setOmdbApiKey((String) document.get("omdb_api_key"));
                                 Utils.setTmdbApiKey((String) document.get("tmdb_api_key"));
+                                System.out.println("aqui Firebase");
+                                System.out.println(Utils.getTmdbApiKey());
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
