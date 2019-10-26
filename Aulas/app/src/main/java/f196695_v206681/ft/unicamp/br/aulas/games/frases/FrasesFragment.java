@@ -6,22 +6,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import f196695_v206681.ft.unicamp.br.aulas.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FrasesFragment extends Fragment {
-
-
     private View view;
 
     private RadioButton nomeCerto;
@@ -33,11 +31,7 @@ public class FrasesFragment extends Fragment {
     private RadioButton nome4;
 
     private TextView frase;
-
-    public FrasesFragment() {
-
-    }
-
+    private Button btnCheck;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,14 +44,14 @@ public class FrasesFragment extends Fragment {
             nome4 = view.findViewById(R.id.nome4);
             frase = view.findViewById(R.id.frase);
 
-            new FrasesAsyncTask(FrasesFragment.this).execute();
+            new GetFrasesAsyncTask(FrasesFragment.this).execute();
         }
 
-        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
+        btnCheck = view.findViewById(R.id.button_check);
+        btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 nomes.clearCheck();
-                new FrasesAsyncTask(FrasesFragment.this).execute();
             }
         });
 
@@ -72,14 +66,19 @@ public class FrasesFragment extends Fragment {
     }
 
     private void checkGame() {
+        btnCheck.setEnabled(false);
+
         if (nomeCerto.isChecked()) {
             Toast.makeText(getContext(), "Certo", Toast.LENGTH_LONG).show();
+            new SavePlayWebClient(FrasesFragment.this).execute(nomeCerto.getText().toString(), "acerto");
         } else {
             Toast.makeText(getContext(), "Errado", Toast.LENGTH_LONG).show();
+            new SavePlayWebClient(FrasesFragment.this).execute(nomeCerto.getText().toString(), "erro");
         }
     }
 
     public void newGame(JogoFrases jogo) {
+        btnCheck.setEnabled(true);
         frase.setText(jogo.getFrase());
 
         List<String> opcoes = jogo.getNomes();
@@ -105,5 +104,8 @@ public class FrasesFragment extends Fragment {
         }
     }
 
+    public void getNewFrase() {
+        new GetFrasesAsyncTask(FrasesFragment.this).execute();
+    }
 
 }
