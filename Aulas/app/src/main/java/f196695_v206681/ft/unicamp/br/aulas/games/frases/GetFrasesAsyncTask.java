@@ -24,10 +24,8 @@ public class GetFrasesAsyncTask extends AsyncTask<Void, Void, JogoFrases> {
     @Override
     protected JogoFrases doInBackground(Void... voids) {
         HttpURLConnection httpURLConnection;
+
         try {
-            /*
-               Endereço que será acessado.
-             */
             String HOST = "https://sa4a4dtiv4.execute-api.eu-west-1.amazonaws.com/default/PythonHTTP1?kind=alunos&num_outros=3";
 
             URL url = new URL(HOST);

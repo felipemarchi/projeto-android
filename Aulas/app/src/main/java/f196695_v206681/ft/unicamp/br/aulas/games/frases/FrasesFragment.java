@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import f196695_v206681.ft.unicamp.br.aulas.R;
 
@@ -32,6 +30,7 @@ public class FrasesFragment extends Fragment {
 
     private TextView frase;
     private Button btnCheck;
+    private Button btnNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,14 +47,17 @@ public class FrasesFragment extends Fragment {
         }
 
         btnCheck = view.findViewById(R.id.button_check);
-        btnCheck.setOnClickListener(new View.OnClickListener() {
+        btnNext = view.findViewById(R.id.button_next);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 nomes.clearCheck();
+                new GetFrasesAsyncTask(FrasesFragment.this).execute();
             }
         });
 
-        view.findViewById(R.id.button_check).setOnClickListener(new View.OnClickListener() {
+        btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkGame();
@@ -104,8 +106,7 @@ public class FrasesFragment extends Fragment {
         }
     }
 
-    public void getNewFrase() {
-        new GetFrasesAsyncTask(FrasesFragment.this).execute();
+    public void enableCheckButton() {
+        btnCheck.setEnabled(true);
     }
-
 }
