@@ -19,8 +19,8 @@ public class SavePlayWebClient extends AsyncTask<String, Void, Boolean> {
     private final FrasesFragment frasesFragment;
 
 
-    public SavePlayWebClient(FrasesFragment frasesFragment) {
-        this.frasesFragment = frasesFragment;
+    public SavePlayWebClient(FrasesFragment statsJogo3Fragment) {
+        this.frasesFragment = statsJogo3Fragment;
     }
 
     @Override

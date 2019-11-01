@@ -28,6 +28,7 @@ import f196695_v206681.ft.unicamp.br.aulas.internet.InternetFragment;
 import f196695_v206681.ft.unicamp.br.aulas.kotlin.KotlinActivity;
 import f196695_v206681.ft.unicamp.br.aulas.games.puzzle.PuzzleFragment;
 import f196695_v206681.ft.unicamp.br.aulas.database.DatabaseFragment;
+import f196695_v206681.ft.unicamp.br.aulas.stats.StatsJogo2Fragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,12 +100,18 @@ public class MainActivity extends AppCompatActivity
                 mailFragment = new MailFragment();
             }
             replaceFragment(mailFragment, "mail_fragment");
-        } else if (id == R.id.action_stats) {
-            Fragment statsFragment = fragmentManager.findFragmentByTag("stats_fragment");
+        } else if (id == R.id.action_stats_jogo2) {
+            Fragment statsFragment = fragmentManager.findFragmentByTag("stats_jogo2_fragment");
             if (statsFragment == null) {
-                statsFragment = new StatsFragment();
+                statsFragment = new StatsJogo2Fragment();
             }
-            replaceFragment(statsFragment, "stats_fragment");
+            replaceFragment(statsFragment, "stats_jogo2_fragment");
+        } else if (id == R.id.action_stats_jogo3) {
+            Fragment statsFragment = fragmentManager.findFragmentByTag("stats_jogo3_fragment");
+            if (statsFragment == null) {
+                statsFragment = new f196695_v206681.ft.unicamp.br.aulas.stats.StatsJogo3Fragment();
+            }
+            replaceFragment(statsFragment, "stats_jogo3_fragment");
         }
 
         return super.onOptionsItemSelected(item);
