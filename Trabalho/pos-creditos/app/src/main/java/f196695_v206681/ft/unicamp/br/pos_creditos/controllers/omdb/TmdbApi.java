@@ -23,25 +23,20 @@ public abstract class TmdbApi {
         return retorno;
     }
 
-    private String montaUrl(String titulo, String ano, int indexTipo, int pagina) {
-        String url = urlBase;
+    private String montaUrl(String titulo, String ano, int indexLingua, int pagina) {
         String query = titulo.replaceAll(" ", "+");
-        String language = "pt-BR";
-        url += "movie?api_key=" + Utils.getTmdbApiKey() + "&language=" + language + "&query=" + query;
+        String language;
+        if (indexLingua == 0) language = "pt-br";
+        else if (indexLingua == 1) language = "en-us";
+        else language = "es-es";
 
-        /*
+        String url = String.format("%smovie?api_key=%s&language=%s&query=%s&page=%s", urlBase, Utils.getTmdbApiKey(), language, query, pagina);
+
         if (!ano.isEmpty())
-            url += "&y=" + ano;
+            url += "&primary_release_year=" + ano;
 
-
-        if (indexTipo == 1)
-        else if (indexTipo == 2) {
-            url += "&type=series";
-        }
-        */
-
-        //url += "&page=" + pagina;
-        System.out.println("aqui URL");
+        System.out.println("Buscando página " + pagina);
+        System.out.print("URL de busca: ");
         System.out.println(url);
         return url;
     }

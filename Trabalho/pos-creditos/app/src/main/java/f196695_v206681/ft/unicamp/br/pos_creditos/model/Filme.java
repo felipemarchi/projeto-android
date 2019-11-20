@@ -95,7 +95,7 @@ public class Filme {
     }
 
     public void getSetPoster(ImageView imagePoster) {
-        if (this.getPoster_path().equals("N/A"))
+        if (this.getPoster_path() == null || this.getPoster_path().equals("N/A"))
             imagePoster.setImageResource(R.drawable.default_poster);
         else {
             String url = "https://image.tmdb.org/t/p/w185/" + this.getPoster_path();

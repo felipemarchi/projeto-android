@@ -31,9 +31,9 @@ public abstract class OmdbApi {
         if (!ano.isEmpty())
             url += "&y=" + ano;
 
-        if (indexTipo == 1)
+        if (indexTipo == 0)
             url += "&type=movie";
-        else if (indexTipo == 2)
+        else if (indexTipo == 1)
             url += "&type=series";
 
         url += "&page=" + pagina;

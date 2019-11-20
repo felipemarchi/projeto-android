@@ -19,10 +19,10 @@
     <string name="avaliar_texto">1. Busque por um filme</string>
     <string name="avaliar_filme">Título</string>
     <string name="avaliar_ano">Ano</string>
-    <string-array name="avaliar_tipo">
-        <item>Filmes e Séries</item>
-        <item>Filmes</item>
-        <item>Séries</item>
+    <string-array name="avaliar_lingua">
+        <item>Português</item>
+        <item>Inglês</item>
+        <item>Espanhol</item>
     </string-array>
     <string name="avaliar_buscar">Buscar</string>
     <string name="avaliar_resultados_titulo">Avaliar</string>

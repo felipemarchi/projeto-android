@@ -235,8 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         public void redirectToFragment(int id, Bundle arguments) {
-            if (id == R.id.avaliar_resultados_titulo)
-            {
+            if (id == R.id.avaliar_resultados_titulo) {
                 Fragment avaliarResultadosFragment = fragmentManager.findFragmentByTag("avaliar_resultados_fragment");
                 if (avaliarResultadosFragment == null)
                     avaliarResultadosFragment = new AvaliarResultadosFragment();

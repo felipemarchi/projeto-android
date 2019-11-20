@@ -81,7 +81,16 @@ public class AvaliarResultadosAdapter extends RecyclerView.Adapter {
             this.index = position;
             filme.getSetPoster(imagePoster);
             textTitulo.setText(filme.getTitle());
-            textAno.setText(filme.getRelease_date().substring(0, 4));
+
+            if (filme.getRelease_date() != null) {
+                try {
+                    textAno.setText(filme.getRelease_date().substring(0, 4));
+                } catch (IndexOutOfBoundsException e) {
+                    textAno.setText("--");
+                }
+            } else {
+                textAno.setText("--");
+            }
         }
     }
 

@@ -21,10 +21,10 @@
     <string name="avaliar_texto">1. Search for a movie</string>
     <string name="avaliar_filme">Title</string>
     <string name="avaliar_ano">Year</string>
-    <string-array name="avaliar_tipo">
-        <item>Movies &amp; Series</item>
-        <item>Movies</item>
-        <item>Series</item>
+    <string-array name="avaliar_lingua">
+        <item>Portuguese</item>
+        <item>English</item>
+        <item>Spanish</item>
     </string-array>
     <string name="avaliar_buscar">Search</string>
     <string name="avaliar_resultados_titulo">Rate</string>

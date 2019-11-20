@@ -3,6 +3,7 @@ package f196695_v206681.ft.unicamp.br.pos_creditos.viewController.avaliar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,15 +43,16 @@ public class AvaliarResultadosFragment extends Fragment {
         this.indexTipo = Integer.parseInt(arguments.getString("indexTipo"));
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle(R.string.avaliar_resultados_titulo);
         carregarAtributos(getArguments());
+        pagina = 1;
 
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_resultados, container, false);
             mainActivity = (MainActivity) getActivity();
-            pagina = 1;
 
             textViewTexto = view.findViewById(R.id.avaliar_resultados_texto);
             textViewSubtexto = view.findViewById(R.id.avaliar_resultados_subtexto);
@@ -61,7 +63,7 @@ public class AvaliarResultadosFragment extends Fragment {
                 @Override
                 public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
-                    if (!recyclerView.canScrollVertically(1) && (total > pagina*10)) {
+                    if (!recyclerView.canScrollVertically(1) && (total > pagina*20)) {
                         progressBar.setVisibility(View.VISIBLE);
                         tmdbApi.buscarFilme(titulo, ano, indexTipo, ++pagina);
                     }
