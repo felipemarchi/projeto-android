@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
             for (long id_genero : filme.getGenre_ids()) {
                 Integer qtd = generoCount.get(id_genero);
                 if (qtd == null) {
-                    generoCount.put(id_genero, 0);
+                    generoCount.put(id_genero, 1);
                 } else {
                     generoCount.put(id_genero, ++qtd);
                 }

@@ -11,7 +11,7 @@ public class Utils {
     private static String emailPassword;
     private static String OmdbApiKey;
     private static String TmdbApiKey;
-    private static Map<Integer, String> generos;
+    private static Map<Long, String> generos;
 
     public static String getEmailPassword() {
         return emailPassword;
@@ -41,7 +41,7 @@ public class Utils {
         TmdbApiKey = tmdbApiKey;
     }
 
-    public static Map<Integer, String> getGenerosMap() {
+    public static Map<Long, String> getGenerosMap() {
         if (Utils.generos == null) {
             carregarGeneros();
         }
@@ -55,11 +55,11 @@ public class Utils {
         Map<String,String> map = new Gson().fromJson(jsonString, stringStringMap);
 
         for (Map.Entry<String,String> entry : map.entrySet())
-            generos.put(Integer.parseInt(entry.getKey()), entry.getValue());
+            generos.put(Long.parseLong(entry.getKey()), entry.getValue());
     }
 
     public static String getGeneroById(long id) {
-        for (Map.Entry<Integer, String> entry : getGenerosMap().entrySet()) {
+        for (Map.Entry<Long, String> entry : getGenerosMap().entrySet()) {
             if (entry.getKey() == id) {
                 return entry.getValue();
             }
