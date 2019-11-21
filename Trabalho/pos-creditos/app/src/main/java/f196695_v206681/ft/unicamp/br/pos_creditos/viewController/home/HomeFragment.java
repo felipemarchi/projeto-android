@@ -22,16 +22,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HomeFragment extends Fragment {
     View view;
     LinearLayout posterLinearLayout;
+    TextView filmesAssistidos;
+    TextView avaliacaoMedia;
+    TextView generoFavorito;
+
     LayoutInflater inflater;
 
     private Retorno retorno;
@@ -45,11 +52,85 @@ public class HomeFragment extends Fragment {
             this.inflater = inflater;
             view = inflater.inflate(R.layout.fragment_home, container, false);
             posterLinearLayout = view.findViewById(R.id.new_movies_linear_layout);
+            filmesAssistidos = view.findViewById(R.id.home_filmes_assistidos_descricao);
+            avaliacaoMedia = view.findViewById(R.id.home_avaliacao_media_descricao);
+            generoFavorito = view.findViewById(R.id.home_genero_favorito_descricao);
+        } else {
+            updateCards();
         }
 
         buscarLancamentos();
 
         return view;
+    }
+
+    public void updateCards() {
+        List<Filme> avaliacoes = ((MainActivity) getActivity()).getAvaliacoes();
+        if (avaliacoes.size() == 0) return;
+
+        //Calcula os dados necessários
+        List<Filme> conjuntoFilmes = getConjuntoFilmes(avaliacoes);
+
+        double soma = 0;
+
+        Map<Long, Integer> generoCount = new HashMap<Long, Integer>();
+        for (Filme filme : conjuntoFilmes) {
+            soma += filme.getVote_average();
+            for (long id_genero : filme.getGenre_ids()) {
+                Integer qtd = generoCount.get(id_genero);
+                if (qtd == null) {
+                    generoCount.put(id_genero, 0);
+                } else {
+                    generoCount.put(id_genero, ++qtd);
+                }
+            }
+        }
+
+        double media = soma / conjuntoFilmes.size();
+
+        int maxCount = 0;
+        long maxKey = 0;
+
+        for (Map.Entry<Long, Integer> entry : generoCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                maxKey = entry.getKey();
+            }
+        }
+
+        int beginIdx = getResources().getString(R.string.home_genero_favorito_descricao).length() - 2;
+        int endIdx = getResources().getString(R.string.home_genero_favorito_descricao).length() - 1;
+
+        //set watched movies
+        StringBuilder sb = new StringBuilder(getResources().getString(R.string.home_filmes_assistidos_descricao));
+        sb.replace(0, 1, Integer.toString(conjuntoFilmes.size()));
+        filmesAssistidos.setText(sb.toString());
+
+        //set average rating
+        sb = new StringBuilder(getResources().getString(R.string.home_avaliacao_media_descricao));
+        sb.replace(0, 1, String.format("%.1f", media));
+        avaliacaoMedia.setText(sb.toString());
+
+        //set favorite gender
+        sb = new StringBuilder(getResources().getString(R.string.home_genero_favorito_descricao));
+        sb.replace(beginIdx, endIdx, Utils.getGeneroById(maxKey));
+        generoFavorito.setText(sb.toString());
+    }
+
+    private List<Filme> getConjuntoFilmes(List<Filme> avaliacoes) {
+        List<Filme> conjunto = new ArrayList<>();
+        for (Filme filme : avaliacoes) {
+            boolean ja_adicionado = false;
+
+            for (Filme f : conjunto) {
+                if (f.getTitle().equals(filme.getTitle()))
+                    ja_adicionado = true;
+            }
+
+            if (!ja_adicionado) conjunto.add(filme);
+        }
+
+        return conjunto;
     }
 
     public void buscarLancamentos() {
@@ -61,7 +142,9 @@ public class HomeFragment extends Fragment {
         OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) { }
+            public void onFailure(Call call, IOException e) {
+            }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
@@ -80,7 +163,7 @@ public class HomeFragment extends Fragment {
                 for (Filme filme : retorno.getResults()) {
                     ImageView imageView = getPosterImageView();
                     filmesMap.put(imageView, filme);
-                    filme.getSetPoster(imageView);
+                    filme.setPosterImage(imageView);
                     posterLinearLayout.addView(imageView);
                 }
             }

@@ -35,8 +35,12 @@ public class AvaliarFilmeFragment extends Fragment {
     Filme filme;
     Calendar calendar;
 
+    public AvaliarFilmeFragment() {
+        this.filme = new Filme();
+    }
+
     public void setFilme(Filme filme) {
-        this.filme = filme;
+        this.filme = Filme.getClone(filme);
     }
 
     public void setCalendar(Calendar calendar) {
@@ -47,7 +51,6 @@ public class AvaliarFilmeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle(R.string.avaliar_filme_titulo);
-
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_avaliar_filme, container, false);
             mainActivity = (MainActivity) getActivity();
@@ -59,7 +62,7 @@ public class AvaliarFilmeFragment extends Fragment {
             textViewComentario = view.findViewById(R.id.avaliar_filme_comentario);
             buttonAvaliar = view.findViewById(R.id.avaliar_filme_avaliar);
 
-            textViewData.setOnClickListener(new View.OnClickListener(){
+            textViewData.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AvaliarDataDialogFragment datePicker = new AvaliarDataDialogFragment();
@@ -85,6 +88,7 @@ public class AvaliarFilmeFragment extends Fragment {
                             (new FirebaseSalvar() {
                                 @Override
                                 public void onSuccess() {
+                                    mainActivity.getAvaliacoes().add(filme);
                                     ratingBar.setRating(0);
                                     textViewComentario.setText("");
                                     LoadingDialogFragment loadingDialogFragment = (LoadingDialogFragment) getFragmentManager().findFragmentByTag("loading_fragment");
@@ -92,6 +96,7 @@ public class AvaliarFilmeFragment extends Fragment {
                                     mainActivity.showToast(getString(R.string.avaliar_filme_sucesso));
                                     mainActivity.popAllFragments();
                                 }
+
                                 @Override
                                 public void onFailure() {
                                     LoadingDialogFragment loadingDialogFragment = (LoadingDialogFragment) getFragmentManager().findFragmentByTag("loading_fragment");
@@ -105,7 +110,7 @@ public class AvaliarFilmeFragment extends Fragment {
             });
         }
 
-        filme.getSetPoster(imagePoster);
+        filme.setPosterImage(imagePoster);
         textViewTitulo.setText(filme.getTitle());
         ratingBar.setRating(0);
         textViewData.setText(DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));

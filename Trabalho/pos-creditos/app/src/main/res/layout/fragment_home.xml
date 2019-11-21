@@ -12,25 +12,25 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_fragment">
 
-        <TextView
-            android:id="@+id/avaliar_resultados_ano"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_title"
-            android:text="@string/filmes_em_alta"/>
-
         <HorizontalScrollView
-            android:layout_marginVertical="@dimen/mtrl_card_spacing"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/mtrl_card_spacing">
 
             <LinearLayout
                 android:id="@+id/new_movies_linear_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:orientation="horizontal"
-                android:paddingHorizontal="-12dp"/>
+                android:paddingHorizontal="-12dp" />
         </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/avaliar_resultados_ano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filmes_em_alta"
+            android:textSize="@dimen/size_title" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="@dimen/half_space"
-                    android:src="@color/colorPrimary" />
+                    android:src="@drawable/count" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -59,14 +59,95 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Título do cartão"
+                        android:text="@string/home_filmes_assistidos_titulo"
                         android:textSize="@dimen/size_title"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/home_filmes_assistidos_descricao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Texto explicativo do cartao" />
+                        android:text="@string/sem_avaliacoes_text"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/mtrl_card_spacing"
+            app:cardBackgroundColor="@color/colorAccent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/half_space">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/half_space"
+                    android:src="@drawable/average" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_avaliacao_media_titulo"
+                        android:textSize="@dimen/size_title"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/home_avaliacao_media_descricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sem_avaliacoes_text" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/mtrl_card_spacing"
+            app:cardBackgroundColor="@color/colorAccent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/half_space">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/half_space"
+                    android:src="@drawable/category" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_genero_favorito_titulo"
+                        android:textSize="@dimen/size_title"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/home_genero_favorito_descricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sem_avaliacoes_text" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

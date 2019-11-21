@@ -14,69 +14,77 @@
             android:id="@+id/detalhes_backdrop_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/teste"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true" />
-
+            android:adjustViewBounds="true"
+            android:paddingBottom="@dimen/half_space"
+            android:scaleType="fitXY" />
 
         <TextView
-            android:paddingTop="16dp"
-            android:paddingHorizontal="16dp"
+            android:id="@+id/detalhes_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
             android:textSize="@dimen/size_title"
-            android:text="Título"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:paddingHorizontal="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/size_text"
-            android:text="Joker"/>
-
-        <TextView
+            android:paddingHorizontal="16dp"
             android:paddingTop="16dp"
-            android:paddingHorizontal="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_title"
-            android:text="Avaliação"/>
+            android:text="@string/detalhes_avaliacao"
+            android:textSize="@dimen/size_title" />
 
         <TextView
-            android:paddingHorizontal="16dp"
+            android:id="@+id/detalhes_avaliacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/size_text"
-            android:text="8.4"/>
+            android:paddingHorizontal="16dp"
+            android:textSize="@dimen/size_text" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
             android:paddingTop="16dp"
-            android:paddingHorizontal="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_title"
-            android:text="Data de lançamento"/>
+            android:text="@string/detalhes_data_lancamento"
+            android:textSize="@dimen/size_title" />
 
         <TextView
-            android:paddingHorizontal="16dp"
+            android:id="@+id/detalhes_data_lancamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/size_text"
-            android:text="10/10/2019"/>
+            android:paddingHorizontal="16dp"
+            android:textSize="@dimen/size_text" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
             android:paddingTop="16dp"
-            android:paddingHorizontal="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_title"
-            android:text="Sinopse"/>
+            android:text="@string/detalhes_genero"
+            android:textSize="@dimen/size_title" />
 
         <TextView
-            android:paddingHorizontal="16dp"
+            android:id="@+id/detalhes_genero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/size_text"
-            android:text="During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."/>
+            android:paddingHorizontal="16dp"
+            android:textSize="@dimen/size_text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/detalhes_sinopse"
+            android:textSize="@dimen/size_title" />
+
+        <TextView
+            android:id="@+id/detalhes_sinopse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textSize="@dimen/size_text" />
+
     </LinearLayout>
 </ScrollView>

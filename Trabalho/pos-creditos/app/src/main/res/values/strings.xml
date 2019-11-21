@@ -62,4 +62,15 @@
     <string name="mostrar_detalhes_popup">Show details</string>
     <string name="avaliar_filme_popup">Rate this movie</string>
     <string name="detalhes_titulo">Details</string>
+    <string name="detalhes_avaliacao">Rate</string>
+    <string name="detalhes_data_lancamento">Release date</string>
+    <string name="detalhes_sinopse">Overview</string>
+    <string name="detalhes_genero">Genre</string>
+    <string name="home_filmes_assistidos_titulo">Watched movies</string>
+    <string name="home_filmes_assistidos_descricao">$ movies watched this month.</string>
+    <string name="home_avaliacao_media_titulo">Average rating</string>
+    <string name="home_avaliacao_media_descricao">$ is the average rate of the movies you\'ve watched.</string>
+    <string name="home_genero_favorito_titulo">Favorite gender</string>
+    <string name="home_genero_favorito_descricao">The most watched gender is $. </string>
+    <string name="sem_avaliacoes_text">You haven\'t rated any movies yet.</string>
 </resources>

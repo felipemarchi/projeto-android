@@ -9,22 +9,17 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.omdb.DownloadImage
 
 public class Filme {
     private double avaliacao;
-    private Date dataAvaliacao;
     private String comentario;
-    private double popularity;
-    private int vote_count;
-    private boolean video;
-    private String poster_path;
-    private int id;
-    private boolean adult;
+    private Date dataAvaliacao;
+
     private String backdrop_path;
-    private String original_language;
-    private String original_title;
-    private List<Integer> genre_ids;
-    private String title;
-    private double vote_average;
+    private List<Long> genre_ids;
+    private long id;
     private String overview;
+    private String poster_path;
+    private String title;
     private String release_date;
+    private double vote_average;
 
     public double getAvaliacao() {
         return avaliacao;
@@ -38,43 +33,20 @@ public class Filme {
         return comentario;
     }
 
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public int getVote_count() {
-        return vote_count;
-    }
-
-    public boolean isVideo() {
-        return video;
-    }
-
     public String getPoster_path() {
         return poster_path;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public boolean isAdult() {
-        return adult;
-    }
 
     public String getBackdrop_path() {
         return backdrop_path;
     }
 
-    public String getOriginal_language() {
-        return original_language;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public List<Integer> getGenre_ids() {
+    public List<Long> getGenre_ids() {
         return genre_ids;
     }
 
@@ -94,11 +66,20 @@ public class Filme {
         return release_date;
     }
 
-    public void getSetPoster(ImageView imagePoster) {
+    public void setPosterImage(ImageView imagePoster) {
         if (this.getPoster_path() == null || this.getPoster_path().equals("N/A"))
             imagePoster.setImageResource(R.drawable.default_poster);
         else {
             String url = "https://image.tmdb.org/t/p/w342/" + this.getPoster_path();
+            new DownloadImageTask(imagePoster).execute(url);
+        }
+    }
+
+    public void setBackdropImage(ImageView imagePoster) {
+        if (this.getBackdrop_path() == null || this.getBackdrop_path().equals("N/A"))
+            imagePoster.setImageResource(R.drawable.default_poster);
+        else {
+            String url = "https://image.tmdb.org/t/p/w780/" + this.getBackdrop_path();
             new DownloadImageTask(imagePoster).execute(url);
         }
     }
@@ -109,4 +90,62 @@ public class Filme {
         this.comentario = comentario;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setAvaliacao(double avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    public void setDataAvaliacao(Date dataAvaliacao) {
+        this.dataAvaliacao = dataAvaliacao;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
+    public void setGenre_ids(List<Long> genre_ids) {
+        this.genre_ids = genre_ids;
+    }
+
+    public void setVote_average(double vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public static Filme getClone(Filme filme) {
+        Filme clone = new Filme();
+
+        clone.setBackdrop_path(filme.backdrop_path);
+        clone.setGenre_ids(filme.genre_ids);
+        clone.setId(filme.id);
+        clone.setOverview(filme.overview);
+        clone.setPoster_path(filme.poster_path);
+        clone.setRelease_date(filme.release_date);
+        clone.setTitle(filme.title);
+        clone.setVote_average(filme.vote_average);
+
+        return clone;
+    }
 }

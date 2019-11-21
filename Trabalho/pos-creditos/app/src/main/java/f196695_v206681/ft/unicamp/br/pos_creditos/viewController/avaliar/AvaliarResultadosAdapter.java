@@ -79,7 +79,7 @@ public class AvaliarResultadosAdapter extends RecyclerView.Adapter {
 
         public void onBind(final Filme filme, final int position) {
             this.index = position;
-            filme.getSetPoster(imagePoster);
+            filme.setPosterImage(imagePoster);
             textTitulo.setText(filme.getTitle());
 
             if (filme.getRelease_date() != null) {
