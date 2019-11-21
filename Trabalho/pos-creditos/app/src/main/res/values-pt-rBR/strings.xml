@@ -53,4 +53,8 @@
     <string name="autores_anos">anos</string>
     <string name="consultar_titulo">Consultar</string>
     <string name="consultar_avaliacoes">Suas avaliações</string>
+    <string name="filmes_em_alta">Filmes em alta</string>
+    <string name="mostrar_detalhes_popup">Mostrar detalhes</string>
+    <string name="avaliar_filme_popup">Avaliar este filme</string>
+    <string name="detalhes_titulo">Detalhes</string>
 </resources>

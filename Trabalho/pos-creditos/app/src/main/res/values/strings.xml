@@ -58,4 +58,8 @@
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">769635683481516</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb769635683481516</string>
+    <string name="filmes_em_alta">Trending movies</string>
+    <string name="mostrar_detalhes_popup">Show details</string>
+    <string name="avaliar_filme_popup">Rate this movie</string>
+    <string name="detalhes_titulo">Details</string>
 </resources>

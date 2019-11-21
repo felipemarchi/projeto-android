@@ -98,7 +98,7 @@ public class Filme {
         if (this.getPoster_path() == null || this.getPoster_path().equals("N/A"))
             imagePoster.setImageResource(R.drawable.default_poster);
         else {
-            String url = "https://image.tmdb.org/t/p/w185/" + this.getPoster_path();
+            String url = "https://image.tmdb.org/t/p/w342/" + this.getPoster_path();
             new DownloadImageTask(imagePoster).execute(url);
         }
     }

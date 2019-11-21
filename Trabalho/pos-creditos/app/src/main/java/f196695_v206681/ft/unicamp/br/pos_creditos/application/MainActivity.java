@@ -27,6 +27,7 @@ import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseBuscar;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.home.DetalhesFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.SobreFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.AutoresFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFragment;
@@ -258,6 +259,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 avaliarFilmeFragment = new AvaliarFilmeFragment();
             avaliarFilmeFragment.setFilme(filme);
             replaceFragment(avaliarFilmeFragment, "avaliar_filme_fragment");
+        }
+
+        public void redirectToDetalhes(Filme filme) {
+            DetalhesFragment detalhesFragment = (DetalhesFragment) fragmentManager.findFragmentByTag("detalhes_fragment");
+            if (detalhesFragment == null)
+                detalhesFragment = new DetalhesFragment();
+            detalhesFragment.setFilme(filme);
+            replaceFragment(detalhesFragment, "detalhes_fragment");
         }
 
     private void checkAuth() {

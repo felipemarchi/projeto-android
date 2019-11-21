@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <item
+        android:id="@+id/mostrar_detalhes_popup"
+        android:title="@string/mostrar_detalhes_popup" />
+
+    <item
+        android:id="@+id/avaliar_filme_popup"
+        android:title="@string/avaliar_filme_popup" />
+
+</menu>
