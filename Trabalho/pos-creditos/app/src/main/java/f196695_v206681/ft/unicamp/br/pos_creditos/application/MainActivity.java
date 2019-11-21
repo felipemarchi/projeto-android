@@ -26,7 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 import f196695_v206681.ft.unicamp.br.pos_creditos.R;
 import f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase.FirebaseBuscar;
 import f196695_v206681.ft.unicamp.br.pos_creditos.model.Filme;
-import f196695_v206681.ft.unicamp.br.pos_creditos.model.Utils;
+import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFilmeFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.SobreFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.outros.AutoresFragment;
 import f196695_v206681.ft.unicamp.br.pos_creditos.viewController.consultar.ConsultarFragment;
@@ -102,6 +102,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     // use response.getError().getErrorCode() and handle the error.
                 }
             }
+        }
+    }
+
+    private void checkAuth() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        if (user == null) {
+            List<AuthUI.IdpConfig> providers = Arrays.asList(
+                    new AuthUI.IdpConfig.PhoneBuilder().build(),
+                    new AuthUI.IdpConfig.FacebookBuilder().build(),
+                    new AuthUI.IdpConfig.GoogleBuilder().build(),
+                    new AuthUI.IdpConfig.EmailBuilder().build());
+
+            // Create and launch sign-in intent
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setLogo(R.drawable.logo_icon_accent)
+                            .setAvailableProviders(providers)
+                            .build(),
+                    RC_SIGN_IN);
         }
     }
 
@@ -260,25 +282,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             replaceFragment(avaliarFilmeFragment, "avaliar_filme_fragment");
         }
 
-    private void checkAuth() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-
-        if (user == null) {
-            List<AuthUI.IdpConfig> providers = Arrays.asList(
-            new AuthUI.IdpConfig.PhoneBuilder().build(),
-            new AuthUI.IdpConfig.FacebookBuilder().build(),
-            new AuthUI.IdpConfig.GoogleBuilder().build(),
-            new AuthUI.IdpConfig.EmailBuilder().build());
-
-            // Create and launch sign-in intent
-            startActivityForResult(
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setLogo(R.drawable.logo_icon)
-                            .setAvailableProviders(providers)
-                            .build(),
-                    RC_SIGN_IN);
+        public void redirectToConsultarFilme(String titulo) {
+            ConsultarFilmeFragment consultarFilmeFragment = (ConsultarFilmeFragment) fragmentManager.findFragmentByTag("consultar_filme_fragment");
+            if (consultarFilmeFragment == null)
+                consultarFilmeFragment = new ConsultarFilmeFragment();
+            consultarFilmeFragment.setTituloSelecionado(titulo);
+            replaceFragment(consultarFilmeFragment, "consultar_filme_fragment");
         }
-    }
 }

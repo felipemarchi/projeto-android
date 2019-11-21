@@ -26,7 +26,7 @@ public abstract class TmdbApi {
     private String montaUrl(String titulo, String ano, int indexLingua, int pagina) {
         String query = titulo.replaceAll(" ", "+");
         String language;
-        if (indexLingua == 0) language = "pt-br";
+        if (indexLingua == 0) language = "pt-BR";
         else if (indexLingua == 1) language = "en-us";
         else language = "es-es";
 
@@ -35,9 +35,6 @@ public abstract class TmdbApi {
         if (!ano.isEmpty())
             url += "&primary_release_year=" + ano;
 
-        System.out.println("Buscando página " + pagina);
-        System.out.print("URL de busca: ");
-        System.out.println(url);
         return url;
     }
 

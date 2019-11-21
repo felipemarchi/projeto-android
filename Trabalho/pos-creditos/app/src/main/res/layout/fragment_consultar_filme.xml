@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_fragment"
+    android:paddingHorizontal="@dimen/padding_fragment"
+    tools:context=".viewController.consultar.ConsultarFilmeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/consultar_filme_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_title"
+            android:textStyle="bold"
+            android:paddingBottom="@dimen/half_space" />
+
+        <ImageView
+            android:id="@+id/consultar_filme_poster"
+            android:layout_below="@id/consultar_filme_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/poster_height"
+            android:layout_marginBottom="@dimen/half_space" />
+
+        <TextView
+            android:id="@+id/consultar_filme_rates"
+            android:layout_below="@id/consultar_filme_poster"
+            android:text="@string/consultar_avaliacoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_title"
+            android:paddingBottom="@dimen/half_space" />
+
+        <ProgressBar
+            android:id="@+id/consultar_filme_loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/consultar_filme_recycler_view"
+            android:layout_below="@id/consultar_filme_rates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</LinearLayout>

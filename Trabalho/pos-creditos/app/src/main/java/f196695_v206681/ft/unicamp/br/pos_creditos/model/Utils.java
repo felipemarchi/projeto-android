@@ -22,6 +22,9 @@ public class Utils {
     }
 
     public static String getTmdbApiKey() {
+        if (TmdbApiKey == null)
+            return "166e5c2be7dc1189ef89bc84bf04831b";
+
         return TmdbApiKey;
     }
 

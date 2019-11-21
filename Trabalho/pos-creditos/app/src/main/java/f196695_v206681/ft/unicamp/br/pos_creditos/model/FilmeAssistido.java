@@ -16,6 +16,7 @@ public class FilmeAssistido {
     private String title;
     private String release_date;
     private String poster_path;
+    private String backdrop_path;
 
     public double getAvaliacao() {
         return avaliacao;
@@ -69,8 +70,16 @@ public class FilmeAssistido {
         return poster_path;
     }
 
+    public String getBack_path() {
+        return backdrop_path;
+    }
+
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
+    }
+
+    public void setBack_path(String back_path) {
+        this.backdrop_path = back_path;
     }
 
     public void getSetPoster(ImageView imagePoster) {
@@ -78,6 +87,15 @@ public class FilmeAssistido {
             imagePoster.setImageResource(R.drawable.default_poster);
         else {
             String url = "https://image.tmdb.org/t/p/w185/" + this.getPoster_path();
+            new DownloadImageTask(imagePoster).execute(url);
+        }
+    }
+
+    public void getSetBackdrop(ImageView imagePoster) {
+        if (this.getBack_path() == null || this.getBack_path().equals("N/A"))
+            imagePoster.setImageResource(R.drawable.default_poster);
+        else {
+            String url = "https://image.tmdb.org/t/p/w185/" + this.getBack_path();
             new DownloadImageTask(imagePoster).execute(url);
         }
     }

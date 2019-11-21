@@ -60,7 +60,7 @@ public class ContatoFragment extends Fragment {
             });
         }
 
-        textViewEmail.requestFocus();
+        textViewAssunto.requestFocus();
         mainActivity.showKeyboard();
 
         return view;

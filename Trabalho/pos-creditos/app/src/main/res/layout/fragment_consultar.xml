@@ -29,11 +29,13 @@
             android:layout_centerVertical="true"
             android:indeterminate="true" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/consultar_recycler_view"
+        <ListView
+            android:id="@+id/consultar_list_view"
             android:layout_below="@id/home_text_filme"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:fastScrollAlwaysVisible="true" />
 
     </RelativeLayout>
 

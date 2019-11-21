@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/half_space">
 
-    <!-- TODO: Data assistida -->
-
     <ImageView
         android:id="@+id/poster_consultar"
         android:layout_width="150dp"
