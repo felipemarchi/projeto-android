@@ -34,9 +34,7 @@ public class ConsultarFilmeAdapter extends RecyclerView.Adapter {
         });
     }
 
-    ConsultarFilmeAdapter() {
-        filmes = new ArrayList<>();
-    }
+    ConsultarFilmeAdapter() { filmes = new ArrayList<>(); }
 
     @NonNull
     @Override

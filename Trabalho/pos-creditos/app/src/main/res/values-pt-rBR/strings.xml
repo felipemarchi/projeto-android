@@ -15,6 +15,7 @@
     <string name="kebab_sobre">Sobre</string>
     <string name="kebab_autores">Autores</string>
     <string name="home_titulo">Home</string>
+    <string name="home_estatisticas">Estatísticas</string>
     <string name="avaliar_titulo">Avaliar</string>
     <string name="avaliar_texto">1. Busque por um filme</string>
     <string name="avaliar_filme">Título</string>
@@ -64,7 +65,7 @@
     <string name="home_filmes_assistidos_titulo">Filmes assistidos</string>
     <string name="home_filmes_assistidos_descricao">$ filmes assistidos este mês.</string>
     <string name="home_avaliacao_media_titulo">Avaliação média</string>
-    <string name="home_avaliacao_media_descricao">$ é a média das avaliações dos filmes que você assistiu.</string>
+    <string name="home_avaliacao_media_descricao">$ é a média de suas avaliações.</string>
     <string name="home_genero_favorito_titulo">Gênero favorito</string>
     <string name="home_genero_favorito_descricao">O gênero que você mais assiste é $.</string>
     <string name="sem_avaliacoes_text">Você ainda não avaliou nenhum filme.</string>

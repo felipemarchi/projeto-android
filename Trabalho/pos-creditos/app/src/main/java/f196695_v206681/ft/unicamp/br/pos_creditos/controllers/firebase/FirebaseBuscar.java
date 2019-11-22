@@ -1,5 +1,6 @@
 package f196695_v206681.ft.unicamp.br.pos_creditos.controllers.firebase;
 
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,9 @@ public abstract class FirebaseBuscar {
     public abstract  void onSuccess();
 
     public void buscarAvaliacoes() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            return;
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection(FirebaseAuth.getInstance().getUid())
@@ -63,6 +67,9 @@ public abstract class FirebaseBuscar {
     }
 
     public static void carregarUtils() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            return;
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("utils")

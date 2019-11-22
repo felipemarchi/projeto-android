@@ -17,6 +17,7 @@
     <string name="kebab_autores">Developers</string>
     <string name="kebab_logout" translatable="false">Logout</string>
     <string name="home_titulo">Home</string>
+    <string name="home_estatisticas">Statistics</string>
     <string name="avaliar_titulo">Rate</string>
     <string name="avaliar_texto">1. Search for a movie</string>
     <string name="avaliar_filme">Title</string>
@@ -69,7 +70,7 @@
     <string name="home_filmes_assistidos_titulo">Watched movies</string>
     <string name="home_filmes_assistidos_descricao">$ movies watched this month.</string>
     <string name="home_avaliacao_media_titulo">Average rating</string>
-    <string name="home_avaliacao_media_descricao">$ is the average rate of the movies you\'ve watched.</string>
+    <string name="home_avaliacao_media_descricao">$ is the average of your rates.</string>
     <string name="home_genero_favorito_titulo">Favorite gender</string>
     <string name="home_genero_favorito_descricao">The most watched gender is $. </string>
     <string name="sem_avaliacoes_text">You haven\'t rated any movies yet.</string>

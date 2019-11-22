@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -57,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkAuth();
         carregarAvaliacoes();
         FirebaseBuscar.carregarUtils();
-        checkAuth();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -124,8 +125,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void checkAuth() {
         firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+        firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                carregarAvaliacoes();
+                FirebaseBuscar.carregarUtils();
+            }
+        });
 
+        user = firebaseAuth.getCurrentUser();
         if (user == null) {
             List<AuthUI.IdpConfig> providers = Arrays.asList(
                     new AuthUI.IdpConfig.PhoneBuilder().build(),
